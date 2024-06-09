@@ -6,7 +6,7 @@ import enLocale from './en-us/common';
 import zhCnLocale from './zh-cn/common';
 
 // const appStore = useAppStore();
-const appStore = {language:'en-us'};
+const appStore = {language:'zh-cn'};
 
 
 const messages = {
@@ -18,7 +18,7 @@ const messages = {
     },
 };
 
-const i18n = createI18n({
+export const i18n = createI18n({
     legacy: false,
     locale: appStore.language,
     messages: messages,

@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia';
 import { AuthState } from '@/stores/type';
 import { getAuthButtonListApi, getAuthMenuListApi } from '@/api/modules/login';
-import { getFlatArr, getShowMenuList, getAllBreadcrumbList } from '@/utils/util';
+import {getFlatArr, getShowMenuList, getAllBreadcrumbList} from '@/utils/util';
 
 // useAuthStore
 export const useAuthStore = defineStore({
-	id: 'guyue-auth',
+	id: 'gyl-auth',
 	state: (): AuthState => ({
 		// 当前页面的 router name，用来做按钮权限筛选
 		routeName: '',

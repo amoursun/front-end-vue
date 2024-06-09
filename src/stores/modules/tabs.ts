@@ -4,7 +4,7 @@ import piniaPersistConfig from '@/config/pinia-persist';
 import router from '@/router/index';
 
 export const useTabsStore = defineStore({
-	id: 'guyue-tabs',
+	id: 'gyl-tabs',
 	state: (): TabsState => ({
 		tabsMenuList: []
 	}),
@@ -75,5 +75,5 @@ export const useTabsStore = defineStore({
 			router.push(tabPath);
 		}
 	},
-	persist: piniaPersistConfig('guyue-tabs')
+	persist: piniaPersistConfig('gyl-tabs')
 });
