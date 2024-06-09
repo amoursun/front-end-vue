@@ -11,4 +11,4 @@ export function setupStore(app: App<Element>) {
     app.use(pinia);
 }
 
-export {pinia as store};
+export {pinia};

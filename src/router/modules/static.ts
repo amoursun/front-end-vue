@@ -26,18 +26,13 @@ export const staticRouter: RouteRecordRaw[] = [
         component: () => import('@/pages/about.vue'),
     },
     {
-        path: '/login-out',
-        name: 'Login-Out',
+        path: LOGIN_URL,
+        name: 'Login',
         component: () => import('@/pages/login.vue'),
-    },
-	{
-		path: LOGIN_URL,
-		name: 'login',
-		component: () => import('@/pages/views/login/index.vue'),
 		meta: {
 			title: '登录'
 		}
-	},
+    },
 	{
 		path: '/layout',
 		name: 'layout',

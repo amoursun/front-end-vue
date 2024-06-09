@@ -3,9 +3,11 @@
     <div>doubleCount:{{doubleCount}}</div>
     <el-button @click="main.randomizeCounter()">counter(round)</el-button>
     <el-button type="primary" @click="main.increment()">counter++</el-button>
-
     <div>{{name}}</div>
     <el-button @click="amend()">修改</el-button>
+    <template v-for="(item, index) in icons" :key="index">
+        <component :is="item.icon" />
+    </template>
 </template>
 
 <script setup lang="ts">
@@ -13,6 +15,22 @@
     import { useMain } from '@/stores/home'
     import { storeToRefs } from 'pinia';
     import {ref} from 'vue';
+    import { useIconRender } from '@/hooks/use-icons';
+
+    const { iconRender } = useIconRender();
+
+    const icons = [
+        {
+            icon: iconRender({ localIcon: '18', color: 'green', fontSize: 30 }),
+        },
+        {
+            icon: iconRender({
+                icon: 'material-symbols-light:18mp-outline-rounded',
+                color: 'red',
+                fontSize: 30,
+            }),
+        },
+    ];
     
     const main = useMain()
     // 解构main里面的state和getters的数据，
