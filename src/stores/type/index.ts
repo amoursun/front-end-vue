@@ -1,5 +1,5 @@
 export type AssemblySizeType = 'small' | 'middle' | 'large';
-export type LayoutType = 'vertical' | 'classic' | 'transverse' | 'columns';
+export type LayoutType = 'vertical' | 'classic' | 'transverse' | 'columns' | 'antd';
 export type StyleType = 'light' | 'dark' | 'realDark';
 
 /* GlobalState */

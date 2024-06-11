@@ -37,10 +37,10 @@ import { ref, computed, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import { useGlobalStore } from '@/stores/modules/global';
 import { useAuthStore } from '@/stores/modules/auth';
-import SubMenu from '@/layouts/components/menu/sub-menu.vue';
-import ToolBarLeft from '@/layouts/components/header/toolbar-left.vue';
-import ToolBarRight from '@/layouts/components/header/toolbar-right.vue';
-import Main from '@/layouts/components/main/index.vue';
+import SubMenu from '@/layout/components/menu/sub-menu.vue';
+import ToolBarLeft from '@/layout/components/header/toolbar-left.vue';
+import ToolBarRight from '@/layout/components/header/toolbar-right.vue';
+import Main from '@/layout/components/main/index.vue';
 
 const route = useRoute();
 const authStore = useAuthStore();

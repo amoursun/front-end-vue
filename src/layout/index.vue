@@ -1,6 +1,9 @@
 <!-- 一次性加载 LayoutComponents -->
 <template>
-	<component :is="LayoutComponents[layout]"></component>
+	<component :is="LayoutComponents[layout]">
+		<!-- <router-view /> 在 main 里面 -->
+	</component>
+	<!-- 主题等设置 (联动) -->
 	<ThemeDrawer />
 </template>
 
@@ -13,10 +16,13 @@ import ThemeDrawer from './components/theme-drawer/index.vue';
 import LayoutVertical from './vertical/index.vue';
 // 横向布局
 import LayoutTransverse from './transverse/index.vue';
+// antd
+import LayoutAntd from './antd/index.vue';
 
 const LayoutComponents: { [key: string]: Component } = {
 	vertical: LayoutVertical,
-	transverse: LayoutTransverse
+	transverse: LayoutTransverse,
+	antd: LayoutAntd,
 };
 
 const globalStore = useGlobalStore();

@@ -34,12 +34,17 @@ const authStore = useAuthStore();
 const globalStore = useGlobalStore();
 
 const breadcrumbList = computed(() => {
-	let breadcrumbData = authStore.breadcrumbListGet[route.matched[route.matched.length - 1].path] ?? [];
-	// 不需要首页面包屑可删除以下判断
-	if (breadcrumbData[0]?.meta.title !== route.meta.title) {
-		breadcrumbData = [{ path: HOME_URL, meta: { icon: 'HomeFilled', title: '首页' } }, ...breadcrumbData];
+	const breadcrumbListGet = authStore.breadcrumbListGet || {};
+	const matched = route.matched || [];
+	if (breadcrumbListGet && matched.length) {
+		const breadcrumbData = breadcrumbListGet[matched[matched.length - 1].path] ?? [];
+		// 不需要首页面包屑可删除以下判断
+		if (breadcrumbData[0]?.meta.title !== route.meta.title) {
+			breadcrumbData = [{ path: HOME_URL, meta: { icon: 'HomeFilled', title: '首页' } }, ...breadcrumbData];
+		}
+		return breadcrumbData;
 	}
-	return breadcrumbData;
+	return [];
 });
 
 const onBreadcrumbClick = (item: Menu.MenuOptions, index: number) => {

@@ -1,0 +1,24 @@
+.antd-layout {
+	width: 100%;
+	height: 100%;
+	.antd-header {
+		background: #fff;
+		padding: 0;
+	}
+	.antd-sider {
+		.logo {
+			height: 32px;
+			background: rgba(255, 255, 255, 0.3);
+			margin: 16px;
+		}
+	}
+
+	.main-content {
+		padding: 16px;
+	}
+
+	.antd-footer {
+		text-align: center;
+		background: #fff;
+	}
+}

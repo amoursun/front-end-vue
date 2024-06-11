@@ -14,8 +14,8 @@ export const useGlobalStore = defineStore({
 		routeName: '',
 		// 全局loading
 		loading: false,
-		// 布局切换 -->  纵向：vertical | 经典：classic | 横向：transverse | 分栏：columns
-		layout: 'vertical',
+		// 布局切换 -->  纵向：vertical | 经典：classic | 横向：transverse | 分栏：columns | 侧边： antd
+		layout: 'antd',
 		// antd组件大小
 		assemblySize: 'middle',
 		// language

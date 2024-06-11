@@ -99,8 +99,8 @@ export const createVitePlugins = (): (PluginOption | PluginOption[])[] => {
 		}),
 		Layouts({
 			// 如果是默认 layouts文件夹，默认 default.vue文件，则不需要配置
-			layoutsDirs: 'src/layouts', // 布局文件存放目录
-			defaultLayout: 'default', // 对应 src/layouts/default.vue
+			layoutsDirs: 'src/layout', // 布局文件存放目录
+			defaultLayout: 'default', // 对应 src/layout/default.vue
 		}),
 		createHtmlPlugin({
 			minify: true,

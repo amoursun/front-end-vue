@@ -1,7 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { defineComponent } from 'vue'
+import Layout from './layout/index.vue'
+</script>
 
 <template>
-    <router-view />
+    <Layout />
 </template>
 
 <style scoped>
