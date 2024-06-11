@@ -61,6 +61,7 @@ class RequestAxios {
 				const userStore = useUserStore();
 				// * 在请求结束后，并关闭请求 loading
 				globalState.setGlobalState('loading', false);
+				debugger
 				// * 登录失效（code == 401）
 				if (data.code == ResultEnum.OVERDUE) {
 					message.error(data.msg);

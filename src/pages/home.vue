@@ -21,12 +21,23 @@
 
     const icons = [
         {
-            icon: iconRender({ localIcon: '18', color: 'green', fontSize: 30 }),
+            icon: iconRender({
+                localIcon: 'material-symbols-light:18mp-outline-rounded',
+                color: 'green',
+                fontSize: 30,
+            }),
         },
         {
             icon: iconRender({
                 icon: 'material-symbols-light:18mp-outline-rounded',
                 color: 'red',
+                fontSize: 30,
+            }),
+        },
+        {
+            icon: iconRender({
+                localIcon: 'material-symbols-light:18mp-outline-rounded',
+                color: 'green',
                 fontSize: 30,
             }),
         },

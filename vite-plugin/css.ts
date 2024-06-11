@@ -12,15 +12,13 @@ export function createViteCss(): CSSOptions {
       // key + config key代表预处理器的名
       scss: {
           // 整个的配置对象都会最终给到scss的执行参数（全局参数）中去
-          math: 'always',
-          globalVars: {
-              // 全局变量
-              // mainColor: 'red'
-          },
+          // math: 'always',
+          // globalVars: {
+          //     // 全局变量
+          //     // mainColor: 'red'
+          // },
           javascriptEnabled: true,
-          additionalData: `
-            @use "@/styles/variables.scss" as *;
-          `,
+          additionalData: '@import "@/styles/variables.scss";',
       }
     },
     postcss: {

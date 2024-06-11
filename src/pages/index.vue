@@ -33,12 +33,3 @@
     }
   }
 </style>
-
-<route lang="json5">
-  {
-    meta: {
-      title: '首页',
-      layout: false,
-    },
-  }
-</route>

@@ -40,9 +40,9 @@
 import { ref, computed, watchEffect } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/modules/auth';
-import SubMenu from '@/layouts/components/Menu/sub-menu.vue';
+import SubMenu from '@/layouts/components/menu/sub-menu.vue';
 import ToolBarRight from '@/layouts/components/header/toolbar-right.vue';
-import Main from '@/layouts/components/Main/index.vue';
+import Main from '@/layouts/components/main/index.vue';
 
 const route = useRoute();
 const authStore = useAuthStore();

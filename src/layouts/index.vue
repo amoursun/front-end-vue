@@ -8,11 +8,11 @@
 import { computed, type Component } from 'vue';
 import { useGlobalStore } from '@/stores/modules/global';
 // 主题抽屉
-import ThemeDrawer from './components/ThemeDrawer/index.vue';
+import ThemeDrawer from './components/theme-drawer/index.vue';
 // 纵向布局
-import LayoutVertical from './LayoutVertical/index.vue';
+import LayoutVertical from './vertical/index.vue';
 // 横向布局
-import LayoutTransverse from './LayoutTransverse/index.vue';
+import LayoutTransverse from './transverse/index.vue';
 
 const LayoutComponents: { [key: string]: Component } = {
 	vertical: LayoutVertical,

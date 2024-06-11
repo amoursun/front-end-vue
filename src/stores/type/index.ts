@@ -54,5 +54,8 @@ export interface keepAliveState {
 /* UserState */
 export interface UserState {
 	token: string;
-	userInfo: { name: string };
+	userInfo: {
+		name: string;
+		password: string;
+	};
 }

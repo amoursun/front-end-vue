@@ -26,7 +26,7 @@ import { useGlobalStore } from '@/stores/modules/global';
 import { useAuthStore } from '@/stores/modules/auth';
 import { useRoute, useRouter } from 'vue-router';
 import { HOME_URL } from '@/config';
-import SvgIcon from '@/components/SvgIcon/index.vue';
+import SvgIcon from '@/components/svg-icon.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -36,7 +36,7 @@ const globalStore = useGlobalStore();
 const breadcrumbList = computed(() => {
 	let breadcrumbData = authStore.breadcrumbListGet[route.matched[route.matched.length - 1].path] ?? [];
 	// 不需要首页面包屑可删除以下判断
-	if (breadcrumbData[0].meta.title !== route.meta.title) {
+	if (breadcrumbData[0]?.meta.title !== route.meta.title) {
 		breadcrumbData = [{ path: HOME_URL, meta: { icon: 'HomeFilled', title: '首页' } }, ...breadcrumbData];
 	}
 	return breadcrumbData;

@@ -14,7 +14,6 @@ const module = import.meta.glob('@/pages/**/*.vue');
 export const initDynamicRouter = async () => {
 	const authStore = useAuthStore();
 	const userStore = useUserStore();
-
 	try {
 		// 1.获取菜单列表 && 按钮权限（可合并到一个接口获取，根据后端不同可自行改造）
 		await authStore.getAuthMenuList();

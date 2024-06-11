@@ -125,13 +125,13 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
-import mittBus from '@/utils/mittBus';
-import { useTheme } from '@/hooks/useTheme';
+import mittBus from '@/utils/mitt-bus';
+import { useTheme } from '@/hooks/use-theme';
 import { useGlobalStore } from '@/stores/modules/global';
 import { LayoutType, StyleType } from '@/stores/interface';
 import { DEFAULT_PRIMARY } from '@/config';
-import ThemeColor from '@/components/ThemeColor/index.vue';
-import SvgIcon from '@/components/SvgIcon/index.vue';
+import ThemeColor from '@/components/theme-color.vue';
+import SvgIcon from '@/components/svg-icon.vue';
 
 const { changeGreyOrWeak } = useTheme();
 
@@ -159,17 +159,17 @@ watch(
 	() => layout,
 	() => {
 		const body = document.body as HTMLElement;
-		body.setAttribute("class", layout.value);
+		body.setAttribute('class', layout.value);
 	},
 	{ immediate: true }
 );
 
 // 打开主题设置
 const drawerVisible = ref(false);
-mittBus.on("openThemeDrawer", () => (drawerVisible.value = true));
+mittBus.on('openThemeDrawer', () => (drawerVisible.value = true));
 </script>
 
 <style scoped lang="scss">
 @import url("./index.scss");
 </style>
-@/utils/mitt-bus
+@/utils/mitt-bus@/hooks/use-theme

@@ -17,6 +17,7 @@ const openThemeDrawer = () => {
 </script>
 
 <style lang="scss">
+@import '@/styles/var.scss';
 .theme-btn {
 	position: fixed;
 	top: 50%;
@@ -27,7 +28,7 @@ const openThemeDrawer = () => {
 	justify-content: center;
 	width: 40px;
 	height: 40px;
-	background-color: @primary-color;
+	background-color: $primary-text-color;
 	border-radius: 10px 0 0 10px;
 	&:hover {
 		background-color: var(--ant-primary-color-hover);
