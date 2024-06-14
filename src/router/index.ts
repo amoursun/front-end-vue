@@ -3,9 +3,29 @@ import NProgress from '@/utils/nprogress';
 import { LOGIN_URL, ROUTER_WHITE_LIST } from '@/config';
 import { useAuthStore } from '@/stores/modules/auth';
 import { useUserStore } from '@/stores/modules/user';
-import { initDynamicRouter } from './modules/dynamic';
-import { staticRouter, errorRouter } from './modules/static';
+// import { initDynamicRouter } from './dynamic';
+import pagesRoutes from './pages';
+import errorRoutes from './error';
 
+const routes: RouteRecordRaw[] = [...pagesRoutes, ...errorRoutes].concat([
+    {
+        path: '/',
+        redirect: pagesRoutes[0].path,
+    },
+    // 路由未匹配到，进入这个
+	{
+        path: '/:currentPath(.*)*',
+        redirect: errorRoutes[0].path,
+        // redirect: () => {
+        //     return {path: '/404'};
+        // }
+    },
+    // 解决刷新页面，路由警告
+	{
+		path: '/:pathMatch(.*)*',
+		redirect: '/404',
+	},
+]);
 /**
  * @description 动态路由参数配置简介 📚
  * @param path ==> 菜单路径
@@ -24,7 +44,7 @@ import { staticRouter, errorRouter } from './modules/static';
  * */
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
-    routes: [...errorRouter, ...staticRouter],
+    routes,
     scrollBehavior(to, from, savedPosition) {
         return {
             el: '#app',

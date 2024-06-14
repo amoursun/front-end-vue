@@ -9,7 +9,7 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { useIconRender } from '@/utils/icons';
+  import { useIconRender } from '@/hooks/use-icons';
   const { iconRender } = useIconRender();
 
   const icons = [
@@ -29,7 +29,7 @@
 <style scoped lang="scss">
   .home-index {
     div {
-      color: $myScssColor;
+      color: #333;
     }
   }
 </style>

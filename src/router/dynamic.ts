@@ -35,7 +35,7 @@ export const initDynamicRouter = async () => {
 		authStore.flatMenuListGet.forEach((item: any) => {
 			item.children && delete item.children;
 			if (item.component && isType(item.component) == 'string') {
-				item.component = module['/src/pages/views' + item.component + '.vue'];
+				item.component = module['/src/pages' + item.component + '.vue'];
 			}
 			// 判断是否全屏路由
 			if (item.meta.isFull) {
