@@ -128,7 +128,7 @@ import { storeToRefs } from 'pinia';
 import mittBus from '@/utils/mitt-bus';
 import { useTheme } from '@/hooks/use-theme';
 import { useGlobalStore } from '@/stores/modules/global';
-import { LayoutType, StyleType } from '@/stores/interface';
+import { LayoutType, StyleType } from '@/stores/type';
 import { DEFAULT_PRIMARY } from '@/config';
 import ThemeColor from '@/components/theme-color.vue';
 import SvgIcon from '@/components/svg-icon.vue';

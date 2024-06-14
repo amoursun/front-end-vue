@@ -45,6 +45,7 @@
         "@vue/eslint-config-prettier": "^9.0.0",
         "@vue/eslint-config-typescript": "^13.0.0",
         "@vue/runtime-core": "^3.4.27",
+        "@vue/tsconfig": "^0.5.1",
         "eslint": "^9.4.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-prettier": "^5.1.3",

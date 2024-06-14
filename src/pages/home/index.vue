@@ -4,7 +4,7 @@
     <el-button @click="main.randomizeCounter()">counter(round)</el-button>
     <el-button type="primary" @click="main.increment()">counter++</el-button>
     <div>{{name}}</div>
-    <el-button @click="amend()">修改</el-button>
+    <a-button type="primary" @click="amend()">修改</a-button>
     <template v-for="(item, index) in icons" :key="index">
         <component :is="item.icon" />
     </template>
