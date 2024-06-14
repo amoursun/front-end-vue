@@ -74,12 +74,7 @@ const handleClick: MenuProps['onClick'] = (e) => {
 	router.push(e.key);
 };
 
-// watch(
-//   () => state.openKeys,
-//   (_val, oldVal) => {
-//     state.preOpenKeys = oldVal;
-//   },
-// );
+// 或者路由守卫里面 结合 pinia 处理
 watch(
     () => route.path,
     (newPath, oldPath) => {
