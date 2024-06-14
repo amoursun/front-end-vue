@@ -15,4 +15,5 @@ export const routes = Object.entries(pages).map(([path, meta]) => {
     };
 }) as RouteRecordRaw[];
 
+export const firstRoute = routes.find(({meta}) => meta?.isRedirect) || routes[0];
 export default routes;

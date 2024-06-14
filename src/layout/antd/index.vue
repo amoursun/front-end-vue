@@ -31,9 +31,9 @@
 </template>
 
 <script setup lang="ts" name="layoutTransverse">
-import { ref, computed, watchEffect, reactive, h } from 'vue';
+import { ref, computed, watchEffect, watch, reactive, h } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import {routes} from '@/router/pages';
+import {routes, firstRoute} from '@/router/pages';
 import {
     MailOutlined, AppstoreOutlined, SettingOutlined,
 } from '@ant-design/icons-vue';
@@ -63,7 +63,7 @@ const items = reactive(
     })
 );
 
-const selectedKeys = ref<string[]>([routes[0].path]);
+const selectedKeys = ref<string[]>([firstRoute.path]);
 const collapsed = ref<boolean>(false);
 
 const route = useRoute();
@@ -80,8 +80,14 @@ const handleClick: MenuProps['onClick'] = (e) => {
 //     state.preOpenKeys = oldVal;
 //   },
 // );
+watch(
+    () => route.path,
+    (newPath, oldPath) => {
+        selectedKeys.value = [newPath];
+    },
+    {immediate: true}
+);
 // watchEffect(() => {
-	
 // });
 </script>
 

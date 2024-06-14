@@ -4,13 +4,14 @@ import { LOGIN_URL, ROUTER_WHITE_LIST } from '@/config';
 import { useAuthStore } from '@/stores/modules/auth';
 import { useUserStore } from '@/stores/modules/user';
 // import { initDynamicRouter } from './dynamic';
-import pagesRoutes from './pages';
+import pagesRoutes, {firstRoute} from './pages';
 import errorRoutes from './error';
+
 
 const routes: RouteRecordRaw[] = [...pagesRoutes, ...errorRoutes].concat([
     {
         path: '/',
-        redirect: pagesRoutes[0].path,
+        redirect: firstRoute.path,
     },
     // 路由未匹配到，进入这个
 	{
