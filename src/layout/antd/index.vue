@@ -14,7 +14,7 @@
             <a-layout-header class="antd-header">
                 Header
             </a-layout-header>
-            <a-layout-content>
+            <a-layout-content class="main-wrapper">
                 <!-- <a-breadcrumb style="margin: 16px 0">
                     <a-breadcrumb-item>User</a-breadcrumb-item>
                     <a-breadcrumb-item>Bill</a-breadcrumb-item>
