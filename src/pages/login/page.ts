@@ -1,5 +1,7 @@
 export const page = {
-    title: 'Login',
-    template: 'login'
+    title: '登录',
+    template: 'login',
+    notMenu: true,
+    notBreadcrumb: true,
 };
 export default page;

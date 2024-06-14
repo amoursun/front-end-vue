@@ -1,5 +1,5 @@
 export const page = {
-    title: 'Home',
+    title: '首页',
     template: 'home'
 };
 export default page;

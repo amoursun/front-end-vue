@@ -1,5 +1,5 @@
 export const page = {
-    title: 'About',
+    title: '关于',
     template: 'about'
 };
 export default page;

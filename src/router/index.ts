@@ -21,10 +21,10 @@ const routes: RouteRecordRaw[] = [...pagesRoutes, ...errorRoutes].concat([
         // }
     },
     // 解决刷新页面，路由警告
-	{
-		path: '/:pathMatch(.*)*',
-		redirect: '/404',
-	},
+	// {
+	// 	path: '/:pathMatch(.*)*',
+	// 	redirect: '/404',
+	// },
 ]);
 /**
  * @description 动态路由参数配置简介 📚
