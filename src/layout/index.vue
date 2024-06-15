@@ -1,5 +1,6 @@
 <!-- 一次性加载 LayoutComponents -->
 <template>
+	<!-- 非 antd 看 _templates/vite-ts-vue -->
 	<component :is="LayoutComponents[layout]">
 		<!-- <router-view /> 在 main 里面 -->
 	</component>
