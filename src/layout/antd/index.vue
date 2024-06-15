@@ -33,37 +33,16 @@
 <script setup lang="ts" name="layoutTransverse">
 import { ref, computed, watchEffect, watch, reactive, h } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import {routes, firstRoute} from '@/router/pages';
-import {
-    MailOutlined, AppstoreOutlined, SettingOutlined,
-} from '@ant-design/icons-vue';
-import type {MenuProps, ItemType} from 'ant-design-vue';
+import {menuRoutes, firstRoute} from '@/router/pages';
+import type {MenuProps} from 'ant-design-vue';
 import { useAuthStore } from '@/stores/modules/auth';
 import SubMenu from '@/layout/components/menu/sub-menu.vue';
 import MainAntd from '@/layout/components/main/antd.vue';
+import {getMenuList} from './util-menu';
 
-const iconMap = {
-    0: MailOutlined,
-    1: AppstoreOutlined,
-    2: SettingOutlined,
-};
-const items = reactive(
-    routes.filter(item => {
-        return item.meta?.notMenu !== true;
-    }).map((item, index) => {
-        const {path, name, meta} = item;
-        const Icon = iconMap[index % 3];
-        return {
-            key: path,
-            icon: () => h(Icon),
-            label: meta?.title || name,
-            title: meta?.title,
-            // children,
-        };
-    })
-);
+const items = reactive(getMenuList(menuRoutes));
 
-const selectedKeys = ref<string[]>([firstRoute.path]);
+const selectedKeys = ref<string[]>([]);
 const collapsed = ref<boolean>(false);
 
 const route = useRoute();
@@ -71,6 +50,7 @@ const authStore = useAuthStore();
 const router = useRouter();
 
 const handleClick: MenuProps['onClick'] = (e) => {
+    console.log(e.key)
 	router.push(e.key);
 };
 

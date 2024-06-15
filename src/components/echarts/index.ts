@@ -5,7 +5,9 @@ import {
 	// 系列类型的定义后缀都为 SeriesOption
 	BarSeriesOption,
 	LineChart,
-	LineSeriesOption
+	LineSeriesOption,
+	PieChart,
+	PieSeriesOption,
 } from 'echarts/charts';
 import { LegendComponent } from 'echarts/components';
 import {
@@ -29,6 +31,7 @@ import { CanvasRenderer } from 'echarts/renderers';
 export type ECOption = echarts.ComposeOption<
 	| BarSeriesOption
 	| LineSeriesOption
+	| PieSeriesOption
 	| TitleComponentOption
 	| TooltipComponentOption
 	| GridComponentOption
@@ -45,6 +48,7 @@ echarts.use([
 	TransformComponent,
 	BarChart,
 	LineChart,
+	PieChart,
 	LabelLayout,
 	UniversalTransition,
 	CanvasRenderer

@@ -7,14 +7,14 @@ import * as echarts from 'echarts';
  * @param {Object} options 绘制Echarts的参数 (必传)
  * */
 // 定义一个函数 useEcharts，接收两个参数 myChart 和 options
-export const useEcharts = (myChart: echarts.ECharts, options: echarts.EChartsCoreOption) => {
+export const useEcharts = (chart: echarts.ECharts, options: echarts.EChartsCoreOption) => {
 	if (options && typeof options === 'object') {
 		// 调用 myChart 的 setOption 方法，将 options 作为参数传入
-		myChart.setOption(options);
+		chart.setOption(options);
 	}
 	// 定义一个函数 echartsResize，用于调整图表大小
 	const echartsResize = () => {
-		myChart && myChart.resize();
+		chart && chart.resize();
 	};
 	// 监听窗口大小变化事件，调用 echartsResize 函数
 	window.addEventListener('resize', echartsResize);

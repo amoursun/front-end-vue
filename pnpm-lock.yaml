@@ -29,6 +29,9 @@ importers:
       echarts:
         specifier: ^5.5.0
         version: 5.5.0
+      echarts-liquidfill:
+        specifier: ^3.1.0
+        version: 3.1.0(echarts@5.5.0)
       element-plus:
         specifier: ^2.7.4
         version: 2.7.4(vue@3.4.27(typescript@5.4.5))
@@ -53,6 +56,9 @@ importers:
       vue:
         specifier: ^3.4.27
         version: 3.4.27(typescript@5.4.5)
+      vue-echarts:
+        specifier: ^6.7.3
+        version: 6.7.3(@vue/runtime-core@3.4.27)(echarts@5.5.0)(vue@3.4.27(typescript@5.4.5))
       vue-i18n:
         specifier: ^9.13.1
         version: 9.13.1(vue@3.4.27(typescript@5.4.5))
@@ -1849,6 +1855,11 @@ packages:
   duplexer@0.1.2:
     resolution: {integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==}
 
+  echarts-liquidfill@3.1.0:
+    resolution: {integrity: sha512-5Dlqs/jTsdTUAsd+K5LPLLTgrbbNORUSBQyk8PSy1Mg2zgHDWm83FmvA4s0ooNepCJojFYRITTQ4GU1UUSKYLw==}
+    peerDependencies:
+      echarts: ^5.0.1
+
   echarts@5.5.0:
     resolution: {integrity: sha512-rNYnNCzqDAPCr4m/fqyUFv7fD9qIsd50S6GDFgO1DxZhncCsNsG7IfUlAlvZe5oSEQxtsjnHiUuppzccry93Xw==}
 
@@ -3405,6 +3416,9 @@ packages:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
     engines: {node: '>=0.10.0'}
 
+  resize-detector@0.3.0:
+    resolution: {integrity: sha512-R/tCuvuOHQ8o2boRP6vgx8hXCCy87H1eY9V5imBYeVNyNVpuL9ciReSccLj2gDcax9+2weXy3bc8Vv+NRXeEvQ==}
+
   resize-observer-polyfill@1.5.1:
     resolution: {integrity: sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==}
 
@@ -4063,6 +4077,17 @@ packages:
       terser:
         optional: true
 
+  vue-demi@0.13.11:
+    resolution: {integrity: sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==}
+    engines: {node: '>=12'}
+    hasBin: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+
   vue-demi@0.14.8:
     resolution: {integrity: sha512-Uuqnk9YE9SsWeReYqK2alDI5YzciATE0r2SkA6iMAtuXvNTMNACJLJEXNXaEy94ECuBe4Sk6RzRU80kjdbIo1Q==}
     engines: {node: '>=12'}
@@ -4072,6 +4097,19 @@ packages:
       vue: ^3.0.0-0 || ^2.6.0
     peerDependenciesMeta:
       '@vue/composition-api':
+        optional: true
+
+  vue-echarts@6.7.3:
+    resolution: {integrity: sha512-vXLKpALFjbPphW9IfQPOVfb1KjGZ/f8qa/FZHi9lZIWzAnQC1DgnmEK3pJgEkyo6EP7UnX6Bv/V3Ke7p+qCNXA==}
+    peerDependencies:
+      '@vue/composition-api': ^1.0.5
+      '@vue/runtime-core': ^3.0.0
+      echarts: ^5.4.1
+      vue: ^2.6.12 || ^3.1.1
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      '@vue/runtime-core':
         optional: true
 
   vue-eslint-parser@9.4.3:
@@ -6050,6 +6088,10 @@ snapshots:
 
   duplexer@0.1.2: {}
 
+  echarts-liquidfill@3.1.0(echarts@5.5.0):
+    dependencies:
+      echarts: 5.5.0
+
   echarts@5.5.0:
     dependencies:
       tslib: 2.3.0
@@ -7850,6 +7892,8 @@ snapshots:
 
   require-directory@2.1.1: {}
 
+  resize-detector@0.3.0: {}
+
   resize-observer-polyfill@1.5.1: {}
 
   resolve-from@4.0.0: {}
@@ -8614,9 +8658,22 @@ snapshots:
       sass: 1.77.4
       terser: 5.31.1
 
+  vue-demi@0.13.11(vue@3.4.27(typescript@5.4.5)):
+    dependencies:
+      vue: 3.4.27(typescript@5.4.5)
+
   vue-demi@0.14.8(vue@3.4.27(typescript@5.4.5)):
     dependencies:
       vue: 3.4.27(typescript@5.4.5)
+
+  vue-echarts@6.7.3(@vue/runtime-core@3.4.27)(echarts@5.5.0)(vue@3.4.27(typescript@5.4.5)):
+    dependencies:
+      echarts: 5.5.0
+      resize-detector: 0.3.0
+      vue: 3.4.27(typescript@5.4.5)
+      vue-demi: 0.13.11(vue@3.4.27(typescript@5.4.5))
+    optionalDependencies:
+      '@vue/runtime-core': 3.4.27
 
   vue-eslint-parser@9.4.3(eslint@9.4.0):
     dependencies:

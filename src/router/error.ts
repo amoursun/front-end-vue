@@ -1,4 +1,4 @@
-import {RouteRecordRaw} from 'vue-router';
+import {RouteItem} from './type';
 
 const pages = import.meta.glob('../components/error/*.vue', {eager: true, import: 'default'});
 export const errorRoutes = Object.entries(pages).map(([path, component]) => {
@@ -7,12 +7,13 @@ export const errorRoutes = Object.entries(pages).map(([path, component]) => {
 
     return {
         path,
+        key: path,
         name,
         component,
         meta: {
             title: `${name}页面`
         },
     };
-}) as RouteRecordRaw[];
+}) as RouteItem[];
 
 export default errorRoutes;
