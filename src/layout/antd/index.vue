@@ -3,6 +3,7 @@
         <a-layout-sider v-model:collapsed="collapsed" collapsible class="antd-sider">
             <div class="logo" />
             <a-menu
+                class="antd-menu-wrapper"
                 v-model:selectedKeys="selectedKeys"
                 mode="inline"
                 theme="dark"
