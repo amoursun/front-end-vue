@@ -170,6 +170,6 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true));
 </script>
 
 <style scoped lang="scss">
-@import url("./index.scss");
+	@import url("./index.scss");
 </style>
 @/utils/mitt-bus@/hooks/use-theme

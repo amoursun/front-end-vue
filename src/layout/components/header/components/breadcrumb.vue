@@ -37,7 +37,7 @@ const breadcrumbList = computed(() => {
 	const breadcrumbListGet = authStore.breadcrumbListGet || {};
 	const matched = route.matched || [];
 	if (breadcrumbListGet && matched.length) {
-		const breadcrumbData = breadcrumbListGet[matched[matched.length - 1].path] ?? [];
+		let breadcrumbData = breadcrumbListGet[matched[matched.length - 1].path] ?? [];
 		// 不需要首页面包屑可删除以下判断
 		if (breadcrumbData[0]?.meta.title !== route.meta.title) {
 			breadcrumbData = [{ path: HOME_URL, meta: { icon: 'HomeFilled', title: '首页' } }, ...breadcrumbData];

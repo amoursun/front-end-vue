@@ -16,20 +16,20 @@ onMounted(() => {
 	// 连接
 	wsRef.value.connect();
 	// 同原生方法
-	wsRef.value.onclose(()=>{
+	wsRef.value.onclose(() => {
 		console.log('onclose');
 	});
 	// 同原生方法
-	wsRef.value.onerror((error)=>{
+	wsRef.value.onerror((error: Error) => {
 		console.log('onerror', error);
 	});
 	// 同原生方法
-	wsRef.value.onmessage(()=>{
+	wsRef.value.onmessage(() => {
 		// 同原生方法
-		wsRef.value.send('自定义发送的数据');
+		wsRef.value?.send('自定义发送的数据');
 	});
 	// 同原生方法
-	wsRef.value.onopen(()=>{
+	wsRef.value.onopen(() => {
 		console.log('onopen');
 	});
 	
@@ -37,7 +37,7 @@ onMounted(() => {
 
 onUnmounted(() => {
 	// 关闭连接
-	wsRef.value.close();
+	wsRef.value?.close();
 });
 
 </script>
