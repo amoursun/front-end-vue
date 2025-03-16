@@ -1,1 +1,9 @@
 @import "./styles/index.scss";
+
+.ant-layout-content.main-wrapper {
+    .main-content,
+    .ant-layout-content,
+    .main-container {
+        height: 100%;
+    }
+}
