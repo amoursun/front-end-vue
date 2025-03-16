@@ -5,6 +5,14 @@ import { getPageScroll } from './tool';
 export type ElRefType = Ref<HTMLElement | null>;
 export type ElType = HTMLElement | Window;
 
+
+/**
+ * 监听滚动事件，返回是否滚动到底部及滚动信息
+ * 通过 el.scrollHeight、el.scrollTop、el.clientHeight 获取元素的滚动高度、滚动位置和可视区域高度
+ *  当scrollTop + clientHeight接近scrollHeight时，我们认为用户已经滚动到了底部
+ * @param elRef DOM元素引用
+ * @returns 返回是否滚动到底部、scrollHeight、scrollTop和clientHeight
+ */
 export function useScroll(elRef: ElRefType) {
     let el: ElType = window;
     const isBottom = ref<boolean>(false);

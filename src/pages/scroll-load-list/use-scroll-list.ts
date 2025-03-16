@@ -66,6 +66,7 @@ export function useScrollList<T extends U, U = T>(
         }
     };
     
+    // 核心是watch函数，它监听isBottom的变化。当用户滚动到底部时，自动加载下一页的数据
     watch(isBottom, (newVal) => {
         if (newVal && !isLoadFinish.value) {
             current.value++;
