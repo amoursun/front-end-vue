@@ -11,21 +11,21 @@
 					@keyup.enter="gotoSearch"
 				>
 					<template #prepend>
-					<el-select
-						v-model="searchEngine"
-						style="width: 90px"
-						size="large"
-						@change="searchEngineChange"
-					>
-						<el-option
-						:label="item.name"
-						:value="index"
-						v-for="(item, index) of searchEngines"
-						/>
-					</el-select>
+						<el-select
+							v-model="searchEngine"
+							style="width: 90px"
+							size="large"
+							@change="searchEngineChange"
+						>
+							<el-option
+								:label="item.name"
+								:value="index"
+								v-for="(item, index) of searchEngines"
+							/>
+						</el-select>
 					</template>
 					<template #append>
-					<el-button type="primary" @click="gotoSearch">搜索</el-button>
+						<el-button type="primary" @click="gotoSearch">搜索</el-button>
 					</template>
 				</el-input>
 				<el-tag
@@ -34,10 +34,10 @@
 					@click="showHightSearch"
 					color="#b1b19e"
 					disable-transitions
-					>高级</el-tag
 				>
+					高级
+				</el-tag>
 			</div>
-		
 			<!-- 内容start -->
 			<div class="jianjie">
 				<div class="jj-list" v-for="item of navigationList">
@@ -50,7 +50,9 @@
 							rel="nofollow"
 							target="_blank"
 							@click="jumpA(item1.link, $event)"
-						>{{ item1.title }}</a>
+						>
+							{{item1.title}}
+						</a>
 					</li>
 					</ul>
 				</div>
@@ -64,58 +66,59 @@
 				@close="dialogClose"
 			>
 				<el-form>
-					<el-form-item label="来源 : ">
-					<el-space :size="1">
-						<el-checkbox
-						v-model="checkAllIncludes"
-						:indeterminate="isIndeterminateIncludes"
-						@change="handleCheckAllIncludesChange"
-						>全选</el-checkbox
+					<el-form-item label="来源: ">
+						<el-space :size="1">
+							<el-checkbox
+								v-model="checkAllIncludes"
+								:indeterminate="isIndeterminateIncludes"
+								@change="handleCheckAllIncludesChange"
+							>
+								全选
+							</el-checkbox>
+						</el-space>
+						<el-checkbox-group
+							v-model="checkedIncludes"
+							@change="handleCheckedIncludesChange"
 						>
-					</el-space>
-					<el-checkbox-group
-						v-model="checkedIncludes"
-						@change="handleCheckedIncludesChange"
-					>
-						<el-checkbox
-						v-for="item in includes"
-						:key="item.link"
-						:label="item.link"
-						>{{ item.title }}</el-checkbox
-						>
-					</el-checkbox-group>
+							<el-checkbox
+							v-for="item in includes"
+							:key="item.link"
+							:label="item.link"
+							>{{item.title}}</el-checkbox
+							>
+						</el-checkbox-group>
 					</el-form-item>
-					<el-form-item label="排除 : ">
-					<el-space :size="1">
-						<el-checkbox
-						v-model="checkAllExcludes"
-						:indeterminate="isIndeterminateExcludes"
-						@change="handleCheckAllExcludesChange"
-						>全选</el-checkbox
+					<el-form-item label="排除: ">
+						<el-space :size="1">
+							<el-checkbox
+								v-model="checkAllExcludes"
+								:indeterminate="isIndeterminateExcludes"
+								@change="handleCheckAllExcludesChange"
+							>
+								全选
+							</el-checkbox>
+						</el-space>
+						<el-checkbox-group
+							v-model="checkedExcludes"
+							@change="handleCheckedExcludesChange"
 						>
-					</el-space>
-					<el-checkbox-group
-						v-model="checkedExcludes"
-						@change="handleCheckedExcludesChange"
-					>
-						<el-checkbox
-						v-for="item in excludes"
-						:key="item.link"
-						:label="item.link"
-						>{{ item.title }}</el-checkbox
-						>
-					</el-checkbox-group>
+							<el-checkbox
+								v-for="item in excludes"
+								:key="item.link"
+								:label="item.link"
+							>
+								{{item.title}}
+							</el-checkbox>
+						</el-checkbox-group>
 					</el-form-item>
 					<el-form-item class="once-search">
-					<el-button type="primary" plain @click="onceSearch"
-						>仅本次搜索</el-button
-					>
+						<el-button type="primary" plain @click="onceSearch">仅本次搜索</el-button>
 					</el-form-item>
 				</el-form>
 				<template #footer>
 					<span class="dialog-footer">
 					<el-button @click="dialogShow = false">取消</el-button>
-					<el-button type="primary" @click="saveStorage"> 保存 </el-button>
+					<el-button type="primary" @click="saveStorage">保存</el-button>
 					</span>
 				</template>
 			</el-dialog>
@@ -178,7 +181,7 @@
 		checkedIncludes.value = val ? includesTemp : [];
 		isIndeterminateIncludes.value = false;
 	};
-	const handleCheckedIncludesChange = (value: string[]) => {
+	const handleCheckedIncludesChange = (value: CheckboxValueType[]) => {
 		reset('0');
 		const checkedCount = value.length;
 		checkAllIncludes.value = checkedCount === includes.length;
@@ -188,14 +191,14 @@
 	const excludesTemp = excludes.map((item) => item.link);
 	const checkAllExcludes = ref(false);
 	const isIndeterminateExcludes = ref(false);
-	const checkedExcludes = ref([]);
+	const checkedExcludes = ref<string[]>([]);
 
-	const handleCheckAllExcludesChange = (val: string) => {
+	const handleCheckAllExcludesChange = (val: CheckboxValueType) => {
 		reset('1');
 		checkedExcludes.value = val ? excludesTemp : [];
 		isIndeterminateExcludes.value = false;
 	};
-	const handleCheckedExcludesChange = (value: string[]) => {
+	const handleCheckedExcludesChange = (value: CheckboxValueType[]) => {
 		reset('1');
 		const checkedCount = value.length;
 		checkAllExcludes.value = checkedCount === excludes.length;
@@ -205,8 +208,12 @@
 		if (link === '#') {
 			e.preventDefault();
 		}
-		if (link.startsWith('/')) {
-			router.push({ path: link });
+		else if (link.startsWith('/')) {
+			router.push({path: link});
+			e.preventDefault();
+		}
+		else if (link.startsWith('http')) {
+			window.open(link);
 			e.preventDefault();
 		}
 	};
@@ -236,7 +243,7 @@
 		});
 	};
 	const navigationList = computed(() => {
-	// 模拟数据
+		// 模拟数据
 		const result = navigationUrls;
 		result.forEach((item) => {
 			const temp = Array.from(Array(9), () => {
@@ -267,14 +274,14 @@
 		}
 		if (len1) {
 			temp = {
-			index: '0',
-			checkedList: checkedIncludes.value,
+				index: '0',
+				checkedList: checkedIncludes.value,
 			};
 		}
 		if (len2) {
 			temp = {
-			index: '1',
-			checkedList: checkedExcludes.value,
+				index: '1',
+				checkedList: checkedExcludes.value,
 			};
 		}
 		if (temp) {
@@ -291,18 +298,16 @@
 		reset();
 		if (storage) {
 			if (storage.index === '0') {
-			const checkedCount = storage.checkedList.length;
-			checkedIncludes.value = storage.checkedList;
-			checkAllIncludes.value = checkedCount === includes.length;
-			isIndeterminateIncludes.value =
-				checkedCount > 0 && checkedCount < includes.length;
+				const checkedCount = storage.checkedList.length;
+				checkedIncludes.value = storage.checkedList;
+				checkAllIncludes.value = checkedCount === includes.length;
+				isIndeterminateIncludes.value = checkedCount > 0 && checkedCount < includes.length;
 			}
 			if (storage.index === '1') {
-			const checkedCount = storage.checkedList.length;
-			checkedExcludes.value = storage.checkedList;
-			checkAllExcludes.value = checkedCount === excludes.length;
-			isIndeterminateExcludes.value =
-				checkedCount > 0 && checkedCount < excludes.length;
+				const checkedCount = storage.checkedList.length;
+				checkedExcludes.value = storage.checkedList;
+				checkAllExcludes.value = checkedCount === excludes.length;
+				isIndeterminateExcludes.value = checkedCount > 0 && checkedCount < excludes.length;
 			}
 		}
 
