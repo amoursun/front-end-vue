@@ -19,6 +19,7 @@
 </template>
 
 <script setup lang="ts" name="SubMenu">
+import { Menu } from '@/types/global';
 import { useRouter } from 'vue-router';
 
 defineProps<{ menuList: Menu.MenuOptions[] }>();
