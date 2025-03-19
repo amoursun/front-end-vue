@@ -3,6 +3,7 @@ import { tableProps } from './type';
 import {useTableHeader} from './hook/use-table-header';
 import {useTreeVirtualScroll} from './hook/use-tree-virtual-scroll';
 import './style.scss';
+import { MinusSquareOutlined, PlusSquareOutlined } from '@ant-design/icons-vue';
 
 export default defineComponent({
     name: 'ScrollTreeTable',
@@ -53,12 +54,17 @@ export default defineComponent({
                                                     }}
                                                 >
                                                     {columnIndex === 0 && item.children && (
-                                                        <button
-                                                            class="btn btn-light btn-sm"
-                                                            onClick={() => toggleExpand(id)}
-                                                        >
-                                                            {isExpanded(id) ? '-' : '+'}
-                                                        </button>
+                                                        isExpanded(id) ? (
+                                                            <MinusSquareOutlined
+                                                                class="square-outlined"
+                                                                onClick={() => toggleExpand(id)}
+                                                            />
+                                                        ) : (
+                                                            <PlusSquareOutlined
+                                                                class="square-outlined"
+                                                                onClick={() => toggleExpand(id)}
+                                                            />
+                                                        )
                                                     )}
                                                 </span>
                                                 {customRender ? customRender({
