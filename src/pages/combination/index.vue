@@ -3,6 +3,7 @@
 		<combination-size />
 		<el-divider />
 		<combination-form />
+		<el-divider />
 	</div>
 </template>
 <script setup lang="ts" name="combination">

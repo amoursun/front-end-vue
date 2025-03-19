@@ -1,10 +1,12 @@
-import {RouteItem} from './type';
-import { routesToTree } from './util-tree';
+import {RouteItem, RouteMeta} from './type';
+import {routesToTree} from './util-tree';
 
 const pages = import.meta.glob('../pages/**/page.ts', {eager: true, import: 'default'});
 const comps = import.meta.glob('../pages/**/index.vue', {eager: true, import: 'default'});
+const tsxComps = import.meta.glob('../pages/**/index.tsx', {eager: true, import: 'default'});
 export const routes = Object.entries(pages).map(([path, meta]) => {
-    const compPath = path.replace('page.ts', 'index.vue');
+    const {fileSuffix = 'vue', pathFileName = 'index'} = meta as RouteMeta;
+    const compPath = path.replace('page.ts', `${pathFileName}.${fileSuffix}`);
     path = path.replace('../pages', '').replace('/page.ts', '') || '/';
     const name = path.split('/').filter(Boolean).join('-');
 
@@ -13,7 +15,7 @@ export const routes = Object.entries(pages).map(([path, meta]) => {
         path,
         key: path,
         name,
-        component: comps[compPath],
+        component: comps[compPath] || tsxComps[compPath],
         meta,
         /**
          * /parent/child => /parent
