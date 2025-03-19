@@ -24,11 +24,11 @@ export const tableProps = {
   },
   cellHeight: {
     type: Number,
-    default: 55
+    default: 46
   },
   scrollY: {
     type: Number,
-    default: 600
+    default: 320
   }
 }
 

@@ -2,6 +2,7 @@ import { defineComponent } from 'vue';
 import { tableProps } from './type';
 import {useTableHeader} from './hook/use-table-header';
 import {useTreeData} from './hook/use-tree-data';
+import './style.scss';
 
 export default defineComponent({
   name: 'TreeTable',
@@ -13,7 +14,7 @@ export default defineComponent({
     return () => {
       const { columns } = props
       return (
-        <table class="table">
+        <table class="table tree-table">
           <thead>
             <tr>
               {tableHeaders.value.map((header) => (

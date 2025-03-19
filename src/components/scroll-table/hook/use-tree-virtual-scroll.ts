@@ -67,12 +67,12 @@ export function useTreeVirtualScroll(
     };
 
     return {
-      isExpanded,
-      toggleExpand,
-      startIndex,
-      count,
-      tableData,
-      allTableData,
-      onScroll,
+        isExpanded,
+        toggleExpand,
+        startIndex,
+        count,
+        tableData,
+        allTableData,
+        onScroll,
     };
 }

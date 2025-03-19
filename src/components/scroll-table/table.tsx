@@ -1,6 +1,7 @@
 import { defineComponent } from 'vue';
 import { tableProps } from './type';
 import {useTableHeader} from './hook/use-table-header';
+import './style.scss';
 
 export default defineComponent({
   name: 'Table',
