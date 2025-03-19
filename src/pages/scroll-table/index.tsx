@@ -1,5 +1,6 @@
 import { defineComponent, onMounted, ref } from 'vue';
 import Table from '@/components/scroll-table/scroll-tree-table';
+import style from './index.module.scss';
 
 interface IItem {
     id: string | number;
@@ -56,7 +57,7 @@ export default defineComponent({
         /* render 函数 */
         return () => {
             return (
-                <div>
+                <div class={style.scrollTable}>
                     <Table
                         columns={[
                         {

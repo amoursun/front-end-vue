@@ -7,7 +7,7 @@
 </script>
 
 <style scoped lang="scss">
-	@import url('./index.scss');
+	@import url('./index.module.scss');
 </style>
 
 
