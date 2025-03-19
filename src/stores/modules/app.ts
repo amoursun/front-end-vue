@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { useStorage } from '@vueuse/core';
-import defaultSettings from '@/settings';
+import { defaultSettings } from '@/config';
 
 // 导入 Element Plus 中英文语言包
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
@@ -11,7 +11,7 @@ import { computed, reactive } from 'vue';
 export const useAppStore = defineStore('app', () => {
   // state
   const device = useStorage('device', 'desktop');
-  const size = useStorage<any>('size', defaultSettings.size);
+  const size = useStorage<number | string>('size', defaultSettings.size);
   const language = useStorage('language', defaultSettings.language);
 
   const sidebarStatus = useStorage('sidebarStatus', 'closed');
