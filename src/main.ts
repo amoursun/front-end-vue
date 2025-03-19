@@ -16,7 +16,8 @@ import App from './app.vue';
 import directives from '@/directives/index';
 // pinia store
 import {pinia} from '@/stores/index';
-
+import vue3TreeOrg from 'vue3-tree-org'
+import 'vue3-tree-org/lib/vue3-tree-org.css';
 
 import './style.scss';
 import { registerGlobComp } from './register';
@@ -44,6 +45,7 @@ Object.keys(Icons).forEach(key => {
 registerGlobComp(app);
 
 app.use(ElementPlus)
+    .use(vue3TreeOrg)
     .use(directives)
     .use(router)
     .use(I18n)
