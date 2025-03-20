@@ -1,17 +1,19 @@
 <template>
 	<div class="vue-query">
 		<div v-if="isLoading">
-			<p>Loading...</p>
+			<a-spin size="large" />
 		</div>
 		<div v-else-if="data">
 			<p>title: {{ data.title }}</p>
 			<p>description: {{ data.description }}</p>
+			<Button @click="update">更新</Button>
 		</div>
 	</div>
 </template>
-<script setup lang="ts" name="vue-query">
-	import { ref } from 'vue';
+<script setup lang="ts" name="vueQuery">
+	import { ref, toRefs } from 'vue';
 	import { useQuery } from 'vue-query';
+	import { Button } from 'ant-design-vue';
 
 	const productId = ref(1);
 	async function fetchProduct() {
@@ -20,11 +22,28 @@
 		).then((res) => res.json());
 	}
 
-	const {isLoading, data} = useQuery(
-		// ['product', productId.value],
-		'product',
-		fetchProduct,
-	);
+	// const {isLoading, data} = useQuery(
+	// 	['product', productId.value],
+	// 	// 'product',
+	// 	fetchProduct,
+	// 	{
+	// 		refetchInterval: 2 * 1000,
+	// 		refetchIntervalInBackground: true,
+	// 		staleTime: 10 * 60 * 1000
+	// 	}
+	// );
+	const store = useQuery({
+		queryKey: ['product', productId.value],
+		queryFn: fetchProduct,
+		// refetchInterval: 2 * 1000,
+		// refetchIntervalInBackground: true,
+		staleTime: 10 * 60 * 1000
+	});
+	const { isLoading, isFetching, data, refetch } = toRefs(store);
+	function update() {
+		productId.value += 1;
+		refetch.value();
+	}
 </script>
 
 <style scoped lang="scss">
