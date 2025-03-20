@@ -14,6 +14,9 @@
 	import { ref, toRefs } from 'vue';
 	import { useQuery } from 'vue-query';
 	import { Button } from 'ant-design-vue';
+	/**
+	 * vue-query: https://blog.csdn.net/weixin_44438233/article/details/141750069
+	 */
 
 	const productId = ref(1);
 	async function fetchProduct() {
