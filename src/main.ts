@@ -1,6 +1,8 @@
 import {createApp} from 'vue';
-import {createPinia} from 'pinia';
+// pinia store
+import {setupPiniaStore, pinia} from '@/stores/index';
 import ElementPlus from 'element-plus';
+import { VueQueryPlugin } from 'vue-query';
 // 需要注意的是，样式文件需要单独引入
 import 'element-plus/dist/index.css';
 import 'virtual:uno.css';
@@ -14,8 +16,7 @@ import router from '@/router/index';
 import App from './app.vue';
 // custom directives
 import directives from '@/directives/index';
-// pinia store
-import {pinia} from '@/stores/index';
+
 import vue3TreeOrg from 'vue3-tree-org'
 import 'vue3-tree-org/lib/vue3-tree-org.css';
 
@@ -44,10 +45,14 @@ Object.keys(Icons).forEach(key => {
 // 注册全局组件
 registerGlobComp(app);
 
+// 注册pinia store, 处理了 app.use(pinia);
+setupPiniaStore(app);
+
 app.use(ElementPlus)
     .use(vue3TreeOrg)
     .use(directives)
     .use(router)
     .use(I18n)
-    .use(pinia)
+    // .use(pinia)
+    .use(VueQueryPlugin)
     .mount('#app');

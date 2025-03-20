@@ -46,7 +46,7 @@ export const useGlobalStore = defineStore({
 	getters: {},
 	actions: {
 		// Set GlobalState
-		setGlobalState(key: keyof GlobalState, val: any) {
+		setGlobalState(key: keyof GlobalState, val: unknown) {
 			this.$patch({ [key]: val });
 		}
 	},

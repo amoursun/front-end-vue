@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia';
 
-export const useMain = defineStore('main', {
+export const useHome = defineStore('home', {
     // 相当于data
     state: () => {
         return {
@@ -17,13 +17,26 @@ export const useMain = defineStore('main', {
     },
     // 相当于vuex的 mutation + action，可以同时写同步和异步的代码
     actions: {
+        /**
+         * 递增计数器
+         *
+         * 该方法用于将类的计数器属性（counter）递增1。
+         */
         increment() {
             this.counter++;
         },
+        /**
+         * 递减计数器
+         */
+        decrement() {
+            this.counter--;
+        },
+        /**
+         * 随机化计数器
+         */
         randomizeCounter() {
-            setTimeout(() => {
-                this.counter = Math.round(100 * Math.random());
-            }, 0);
+            this.counter = Math.round(100 * Math.random());
         }
-    }
+    },
 });
+

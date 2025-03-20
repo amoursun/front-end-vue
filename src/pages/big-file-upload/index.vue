@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
     import MD5 from 'crypto-js/md5';
-    import { useMain } from '@/stores/home'
+    import { useHome } from '@/stores/home'
     import { storeToRefs } from 'pinia';
     import {ref, reactive} from 'vue';
 

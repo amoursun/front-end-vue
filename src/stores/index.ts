@@ -7,7 +7,7 @@ const pinia = createPinia();
 // piniaPersist(持久化)
 pinia.use(piniaPluginPersistedState);
 // 全局注册 store
-export function setupStore(app: App<Element>) {
+export function setupPiniaStore(app: App<Element>) {
     app.use(pinia);
 }
 
