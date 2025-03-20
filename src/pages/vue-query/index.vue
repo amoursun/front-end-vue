@@ -4,8 +4,8 @@
 			<p>Loading...</p>
 		</div>
 		<div v-else-if="data">
-			<p>{{ data.title }}</p>
-			<p>{{ data.description }}</p>
+			<p>title: {{ data.title }}</p>
+			<p>description: {{ data.description }}</p>
 		</div>
 	</div>
 </template>
