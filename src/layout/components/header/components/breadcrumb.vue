@@ -27,6 +27,7 @@ import { useAuthStore } from '@/stores/modules/auth';
 import { useRoute, useRouter } from 'vue-router';
 import { HOME_URL } from '@/config';
 import SvgIcon from '@/components/svg-icon.vue';
+import { Menu } from '@/types/global';
 
 const route = useRoute();
 const router = useRouter();

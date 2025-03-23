@@ -36,6 +36,7 @@
   import { reactive } from 'vue';
   import { useUserStore } from '@/stores/modules/user';
 import { useRouter } from 'vue-router';
+import { UserState } from '@/stores/type';
   const router = useRouter();
   const {
     userInfo: formState,

@@ -50,7 +50,7 @@ const route = useRoute();
 const authStore = useAuthStore();
 const router = useRouter();
 
-const handleClick: MenuProps['onClick'] = (e) => {
+const handleClick: MenuProps['onClick'] = (e: any) => {
     console.log(e.key)
 	router.push(e.key);
 };

@@ -4,7 +4,7 @@
             Loading...
         </li>
         <li v-for="item in items">
-            <slot name="item" v-bind="item"/>
+            <slot name="item" v-bind="item" />
         </li>
     </ul>
 </template>
@@ -13,7 +13,11 @@
     import { ref } from 'vue'
     
     const props = defineProps(['api-url', 'per-page'])
-    const items = ref([])
+    const items = ref<Array<{
+        body: string;
+        username: string;
+        likes: number;
+    }>>([]);
     // mock remote data fetching
     setTimeout(() => {
         items.value = [

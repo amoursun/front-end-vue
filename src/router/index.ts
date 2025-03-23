@@ -11,11 +11,13 @@ import errorRoutes from './error';
 const routes: RouteRecordRaw[] = [...pagesRoutes, ...errorRoutes].concat([
     {
         path: '/',
+        key: 'redirect',
         redirect: firstRoute.path,
     },
     // 路由未匹配到，进入这个
 	{
         path: '/:currentPath(.*)*',
+        key: 'path-all',
         redirect: errorRoutes[0].path,
         // redirect: () => {
         //     return {path: '/404'};
@@ -24,6 +26,7 @@ const routes: RouteRecordRaw[] = [...pagesRoutes, ...errorRoutes].concat([
     // 解决刷新页面，路由警告
 	// {
 	// 	path: '/:pathMatch(.*)*',
+    //  key: 'path-404',
 	// 	redirect: '/404',
 	// },
 ]);

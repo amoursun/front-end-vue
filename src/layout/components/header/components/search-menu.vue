@@ -32,6 +32,7 @@
 import { ref, computed, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/modules/auth';
+import { Menu } from '@/types/global';
 const authStore = useAuthStore();
 const router = useRouter();
 const menuList = computed(() => authStore.flatMenuListGet.filter(item => !item.meta.isHide));

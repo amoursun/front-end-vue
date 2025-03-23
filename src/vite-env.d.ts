@@ -20,4 +20,6 @@ declare namespace JSX {
     }
 }
 
+declare module 'sortablejs';
+
 

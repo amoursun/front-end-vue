@@ -18,10 +18,11 @@ export function getPageScroll(ele: HTMLElement | Window): {
 } {
     if (isHTMLElement(ele)) {
         // const rect = el.getBoundingClientRect();
+        const el = ele as HTMLElement;
         return {
-            scrollHeight: ele.scrollHeight,
-            scrollTop: ele.scrollTop,
-            clientHeight: ele.clientHeight,
+            scrollHeight: el.scrollHeight,
+            scrollTop: el.scrollTop,
+            clientHeight: el.clientHeight,
         };
     }
     return {

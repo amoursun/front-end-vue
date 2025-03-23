@@ -24,7 +24,7 @@ use([
 provide(THEME_KEY, 'dark');
 
 const echartsRef = ref<HTMLElement>();
-const option: echarts.EChartsOption = ref({
+const option = ref<echarts.EChartsOption>({
 	color: ['#ff9597', '#22cfe0', '#b9b1f0', '#51b7fb', '#76e68f', '#fa8b54', '#ffc545', '#ffd9a6'],
 	tooltip: {
 		trigger: 'item'
@@ -43,7 +43,6 @@ const option: echarts.EChartsOption = ref({
 			fontSize: 12
 		}
 	},
-
 	series: [
 		{
 			name: '项目',

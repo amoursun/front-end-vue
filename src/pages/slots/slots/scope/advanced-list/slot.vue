@@ -1,6 +1,6 @@
 <template>
     <Comp api-url="url" :per-page="10">
-        <template #item="{ body, username, likes }">
+        <template #item="{body, username, likes}">
             <div class="item">
                 <p>{{ body }}</p>
                 <p class="meta">by {{ username }} | {{ likes }} likes</p>

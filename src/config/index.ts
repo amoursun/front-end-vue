@@ -13,6 +13,6 @@ export const DEFAULT_PRIMARY: string = '#2449ff';
 export const ROUTER_WHITE_LIST: string[] = ['/500'];
 
 export const defaultSettings = {
-    language: 'zh',
+    language: 'zh-cn',
     size: 'md',
-}
+};

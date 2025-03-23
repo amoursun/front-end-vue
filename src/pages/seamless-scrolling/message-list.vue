@@ -17,8 +17,8 @@ const props = defineProps<{
 const extendedMessages = ref<string[]>([]);
 const scrollInterval = ref<number>(0);
 
-const messageList = ref<HTMLDivElement>(null);
-const messageWrapper = ref<HTMLDivElement>(null);
+const messageList = ref<HTMLDivElement | null>(null);
+const messageWrapper = ref<HTMLDivElement | null>(null);
 
 onMounted(() => {
     extendedMessages.value = [...props.messages, ...props.messages];
@@ -35,10 +35,11 @@ function startScrolling() {
 
     const scroll = () => {
         scrollAmount += 1;
-        messageWrapperEle.style.transform = `translateY(-${scrollAmount}px)`;
-
-        if (scrollAmount >= messageWrapperEle.clientHeight / 2) {
-            scrollAmount = 0;
+        if (messageWrapperEle) {
+            messageWrapperEle.style.transform = `translateY(-${scrollAmount}px)`;
+            if (scrollAmount >= messageWrapperEle.clientHeight / 2) {
+                scrollAmount = 0;
+            }
         }
 
         scrollInterval.value = requestAnimationFrame(scroll);

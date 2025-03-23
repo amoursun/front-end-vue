@@ -20,7 +20,7 @@ export function storageHandler(key: string, val?: Object | string) {
     if (typeof val === 'object') {
         localStorage.setItem(key, JSON.stringify(val));
     }
-    else {
+    else if (typeof val === 'string') {
         localStorage.setItem(key, val);
     }
     return undefined;

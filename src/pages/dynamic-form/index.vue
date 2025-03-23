@@ -29,7 +29,7 @@ const fields = ref([
     { name: 'password', label: '密码', type: 'password' }
 ]);
 
-const formData = ref({});
+const formData = ref<Record<string, unknown>>({});
 initializeFormData();
 
 fields.value.forEach(field => {

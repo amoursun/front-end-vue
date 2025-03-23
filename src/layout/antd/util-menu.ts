@@ -20,7 +20,7 @@ function changeMenuItem(route: RouteItem, index: number, isFirstLevel = false): 
         label: meta?.title || name,
         title: meta?.title,
         children: children && children.length > 0
-            ? children.map((it, i) => changeMenuItem(it, i))
+            ? children.map((it, i) => changeMenuItem(it as RouteItem, i))
             : undefined,
     } as ItemType;
 }

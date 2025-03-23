@@ -73,10 +73,10 @@ const tabsDrop = () => {
 		draggable: '.ant-tabs-tab',
 		animation: 300,
 		chosenClass: 'chosen',
-		onEnd: ({ newIndex, oldIndex }) => {
+		onEnd: ({newIndex, oldIndex}: {newIndex: number, oldIndex: number}) => {
 			const tabsList = [...tabsStore.tabsMenuList];
-			const currRow = tabsList.splice(oldIndex as number, 1)[0];
-			tabsList.splice(newIndex as number, 0, currRow);
+			const currRow = tabsList.splice(oldIndex, 1)[0];
+			tabsList.splice(newIndex, 0, currRow);
 			tabsStore.setTabs(tabsList);
 		}
 	});

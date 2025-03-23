@@ -46,7 +46,7 @@ export function useScroll(elRef: ElRefType) {
     onMounted(() => {
         nextTick(() => {
             if (elRef) {
-                el = elRef.value;
+                el = elRef.value as ElType;
             }
             el.addEventListener('scroll', throttle(handleBottom, 200));
         })
