@@ -15,6 +15,9 @@ import AutoImport from 'unplugin-auto-import/vite';
 // 自动导入第三方组件 和项目组件
 import Components from 'unplugin-vue-components/vite';
 import {AntDesignVueResolver, ElementPlusResolver} from 'unplugin-vue-components/resolvers';
+import { visualizer } from 'rollup-plugin-visualizer';
+// 图片压缩插件
+import viteImagemin from 'vite-plugin-imagemin';
 
 // px-vw
 // import {postcssPxToViewportConfig} from './vite-plugin/postcss-px-to-viewport-config';
@@ -121,7 +124,6 @@ export const createVitePlugins = (): (PluginOption | PluginOption[])[] => {
 				},
 			},
 		}),
-		viteCompression(),
 		// Icons({
 		//   autoInstall: true, // 自动安装
 		//   compiler: 'vue3', // 支持vue3
@@ -139,6 +141,50 @@ export const createVitePlugins = (): (PluginOption | PluginOption[])[] => {
 			iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
 			// 指定symbolId格式
 			symbolId: 'icon-[name]',
+		}),
+		visualizer({
+			// 打包完成后自动打开浏览器，显示产物体积报告
+			open: true,
+			gzipSize: true,
+            brotliSize: true,
+            emitFile: false,
+            filename: 'stats.html', // 分析图生成的文件名
+		}),
+		viteCompression({
+			verbose: true, // 是否在控制台中输出压缩结果
+			disable: false,
+			threshold: 10240, // 如果体积大于阈值，将被压缩，单位为b，体积过小时请不要压缩，以免适得其反
+			algorithm: 'gzip', // 压缩算法，可选['gzip'，' brotliccompress '，'deflate '，'deflateRaw']
+			ext: '.gz', // 压缩后的文件扩展名，不配置默认为 .gz
+			deleteOriginFile: false, // 源文件压缩后是否删除(看压缩后的效果，请设置为true)
+		}),
+		viteImagemin({
+			gifsicle: { // gif图片压缩
+				optimizationLevel: 3, // 选择1到3之间的优化级别
+				interlaced: false, // 隔行扫描gif进行渐进式渲染
+				// colors: 2 // 将每个输出GIF中不同颜色的数量减少到num或更少。数字必须介于2和256之间。
+			},
+			optipng: { // png
+			  	optimizationLevel: 7, // 选择0到7之间的优化级别
+			},
+			mozjpeg: { // jpeg
+			  	quality: 20, // 压缩质量，范围从0(最差)到100(最佳)。
+			},
+			pngquant: { // png
+				quality: [0.8, 0.9], // Min和max是介于0(最差)到1(最佳)之间的数字，类似于JPEG。达到或超过最高质量所需的最少量的颜色。如果转换导致质量低于最低质量，图像将不会被保存。
+				speed: 4, // 压缩速度，1(强力)到11(最快)
+			},
+			svgo: { // svg压缩
+				plugins: [
+						{
+							name: 'removeViewBox',
+						},
+						{
+							name: 'removeEmptyAttrs',
+							active: false,
+						},
+				],
+			},
 		}),
 	];
 };
