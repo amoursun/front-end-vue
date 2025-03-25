@@ -3,9 +3,11 @@
 		class="scroll-load-list"
 		ref="el"
 	>
-		<div class="scroll-load-item" v-for="(item, index) in listData" :key="index">
-			<div class="value">{{ item }}</div>
-		</div>
+		<keep-alive>
+			<div class="scroll-load-item" v-for="(item, index) in listData" :key="index">
+				<div class="value">{{ item }}</div>
+			</div>
+		</keep-alive>
 		<div class="loading" v-if="loading">加载中...</div>
 	</div>
 </template>

@@ -7,7 +7,7 @@ import throttle from './modules/throttle';
 import longpress from './modules/longpress';
 import waterMarker from './modules/water-marker';
 
-const directivesList: { [key: string]: Directive } = {
+const directivesObject: { [key: string]: Directive } = {
 	auth,
 	copy,
 	draggable,
@@ -19,8 +19,8 @@ const directivesList: { [key: string]: Directive } = {
 
 const directives = {
 	install: function (app: App<Element>) {
-		Object.keys(directivesList).forEach(key => {
-			app.directive(key, directivesList[key]);
+		Object.keys(directivesObject).forEach(key => {
+			app.directive(key, directivesObject[key]);
 		});
 	}
 };
