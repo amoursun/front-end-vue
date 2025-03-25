@@ -1,4 +1,4 @@
-export let head = [
+export const head = [
     { title: '标题', Alias: 'key', fixed: true, width: 100 },
     { title: '分类1', Alias: 'a0' },
     { title: '分类2', Alias: 'a1' },
@@ -74,7 +74,7 @@ export const calcList = [
     }
 ];
 
-export let table = [
+const baseTable = [
     {
         key: '数据1',
         a0: -160425000000,
@@ -356,3 +356,8 @@ export let table = [
         a24: 0.4208
     },
 ];
+
+export const table = baseTable.concat(baseTable.map((it, index) => ({
+    ...it,
+    key: `${it.key}-1-${index + 1}`,
+})));

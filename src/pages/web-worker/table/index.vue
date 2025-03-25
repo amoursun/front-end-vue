@@ -12,17 +12,17 @@
 		<div class="table-list">
 			<vxe-table
 				ref="refVxeTable"
-				size="mini"
-				height="800"
+				size="medium"
+				height="auto"
 				stripe
 				border
-				show-overflow
 				show-footer
-				auto-resize="true"
-				highlight-current-row
-				highlight-hover-row
+				auto-resize
+				show-overflow
 				show-header-overflow
 				show-footer-overflow
+				column-config="{resizable: true, isCurrent: true}"
+				cell-config="{height: 48}"
 				:scroll-x="{enabled: true, gt: 15}"
 				:scroll-y="{enabled: true, gt: 0}"
 				:data="state.tableData"
@@ -37,8 +37,7 @@
 					resizable
 					:fixed="item.fixed ? 'left' : ''"
 					:width="item.width ? item.width : 150"
-				>
-				</vxe-table-column>
+				/>
 			</vxe-table>
 		</div>
 	</div>
