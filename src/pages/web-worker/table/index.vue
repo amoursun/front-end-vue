@@ -11,9 +11,9 @@
 		</div>
 		<div class="table-list">
 			<vxe-table
-				:ref="refVxeTable"
+				ref="refVxeTable"
 				size="mini"
-				height="auto"
+				height="800"
 				stripe
 				border
 				show-overflow
@@ -23,6 +23,8 @@
 				highlight-hover-row
 				show-header-overflow
 				show-footer-overflow
+				:scroll-x="{enabled: true, gt: 15}"
+				:scroll-y="{enabled: true, gt: 0}"
 				:data="state.tableData"
 				:merge-footer-items="footerItems"
 				:footer-method="footerMethods"
@@ -125,10 +127,11 @@
 	watch(
 		() => state.checkList,
 		(newVal) => {
+			console.log(newVal, refVxeTable.value);
 			// 刷新列
-			refVxeTable.value.refreshColumn();
+			refVxeTable.value.refreshColumn?.();
 			// 重新计算统计数据
-			refVxeTable.value.handleDefaultMergeFooterItems();
+			refVxeTable.value.handleDefaultMergeFooterItems?.();
 		}
 	);
 
