@@ -18,6 +18,8 @@ import {AntDesignVueResolver, ElementPlusResolver} from 'unplugin-vue-components
 import { visualizer } from 'rollup-plugin-visualizer';
 // 图片压缩插件
 import viteImagemin from 'vite-plugin-imagemin';
+// 全局安装组件库的按需加载插件
+import { lazyImport, VxeResolver } from 'vite-plugin-lazy-import';
 
 // px-vw
 // import {postcssPxToViewportConfig} from './vite-plugin/postcss-px-to-viewport-config';
@@ -186,5 +188,22 @@ export const createVitePlugins = (): (PluginOption | PluginOption[])[] => {
 				],
 			},
 		}),
+		lazyImport({
+			resolvers: [
+				VxeResolver({
+					libraryName: 'vxe-table'
+				}),
+				VxeResolver({
+					libraryName: 'vxe-pc-ui'
+				}),
+			],
+		}),
 	];
 };
+
+// 如果您使用了 webpack，借助插件 babel-plugin-import 可以实现按需加载模块
+// 修改文件 babel.config.js
+// plugins: [
+// 	['import', { libraryName: 'vxe-table', style: true }, 'vxe-table'],
+// 	['import', { libraryName: 'vxe-pc-ui', style: true }, 'vxe-pc-ui']
+// ]

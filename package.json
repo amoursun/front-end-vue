@@ -28,6 +28,7 @@
         "element-plus": "^2.7.4",
         "events": "^3.3.0",
         "js-sha256": "^0.11.0",
+        "mathjs": "^14.3.1",
         "mitt": "^3.0.1",
         "nprogress": "^0.2.0",
         "pinia": "^2.1.7",
@@ -38,13 +39,16 @@
         "vue-i18n": "^9.13.1",
         "vue-query": "^1.26.0",
         "vue-router": "^4.0.13",
-        "vue3-tree-org": "^4.2.2"
+        "vue3-tree-org": "^4.2.2",
+        "vxe-table": "^4.11.29",
+        "xe-utils": "^3.7.4"
     },
     "devDependencies": {
         "@iconify/vue": "^4.1.2",
         "@rushstack/eslint-patch": "^1.10.3",
         "@types/crypto-js": "^4.2.2",
         "@types/lodash-es": "^4.17.12",
+        "@types/mathjs": "^9.4.2",
         "@types/node": "^20.14.0",
         "@types/nprogress": "^0.2.3",
         "@types/sortablejs": "^1.15.8",
@@ -83,9 +87,11 @@
         "vite-plugin-enhance-log": "^0.6.2",
         "vite-plugin-html": "^3.2.2",
         "vite-plugin-imagemin": "^0.6.1",
+        "vite-plugin-lazy-import": "^1.0.7",
         "vite-plugin-pages": "^0.32.2",
         "vite-plugin-svg-icons": "^2.0.1",
         "vite-plugin-vue-layouts": "^0.11.0",
-        "vue-tsc": "^2.2.8"
+        "vue-tsc": "^2.2.8",
+        "worker-loader": "^3.0.8"
     }
 }
