@@ -1,21 +1,45 @@
 <template>
 	<div class="canvas-demo">
 		<button @click="makeWorker">开始绘图</button>
-		<canvas :ref="refCanvas" width="300" height="150"></canvas>
+		<div>绘图完成：{{ result.finished }}</div>
+		<div>
+			<canvas ref="refCanvas" width="300" height="150"></canvas>
+		</div>
 	</div>
 </template>
 
 <script setup lang="ts" name="workerCanvas">
+	import { WebWorker } from '@/utils/worker';
 	import { reactive, ref } from 'vue';
-	// import Worker from 'worker-loader!../worker/canvas-worker.ts?inline=false';
+	import { IWorkerEvent } from '../type';
+	// import CanvasWorker from 'src/pages/web-worker/worker/canvas-worker.ts?worker';
 
-	const refCanvas = ref();
+	const result = reactive<{
+		finished: string;
+	}>({
+		finished: '未完成绘图',
+	});
+
+	const refCanvas = ref<HTMLCanvasElement | null>(null);
 	const makeWorker = () => {
-		const worker = new Worker('../worker/canvas-worker.ts', {type: 'module'});
+		const worker = WebWorker('@/pages/web-worker/worker/canvas-worker.ts');
+		// const worker = new CanvasWorker();
+		// const worker = new Worker(
+		// 	new URL('../worker/canvas-worker.ts', import.meta.url),
+		// 	{ type: 'module' }
+		// );
 		// 使用canvas的transferControlToOffscreen函数获取一个OffscreenCanvas对象
-		const offscreen = refCanvas.value.transferControlToOffscreen?.();
+		if (!refCanvas.value) {
+			return;
+		};
+		const offscreen = refCanvas.value.transferControlToOffscreen();
+		console.dir(offscreen);
 		// 注意：第二个参数不能省略
-		worker.postMessage({ canvas: offscreen }, [offscreen]);
+		void worker.postMessage({canvas: offscreen}, [offscreen]);
+
+		worker.onmessage = (e: IWorkerEvent<string>) => {
+			result.finished = e.data;
+		};
     };
 </script>
 

@@ -36,8 +36,8 @@ import viteCompression from 'vite-plugin-compression';
 
 /** 本地svg图标集合名称 */
 const collectionName = env.VITE_ICON_LOCAL_PREFIX?.replace(
-  `${env.VITE_ICON_PREFIX}-`,
-  ''
+	`${env.VITE_ICON_PREFIX}-`,
+	''
 );
 
 // https://vitejs.dev/plugins/

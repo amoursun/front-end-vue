@@ -11,6 +11,7 @@
 <script setup lang="ts">
 import { ECharts, EChartsOption, init } from 'echarts';
 import { ranking1, ranking2, ranking3, ranking4 } from '../assets/ranking-icon';
+
 interface ChartProp {
 	name: string;
 	value: number;

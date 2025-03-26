@@ -176,6 +176,7 @@ self.onmessage = function (e: IWorkerEvent<{
     };
     selectValue: string;
 }>) {
+    debugger;
     const { calcType, columnList, dataMap, selectValue } = e.data;
     const arr: CountType[] = [calcType.title];
     columnList.forEach((item) => {
@@ -219,5 +220,5 @@ self.onmessage = function (e: IWorkerEvent<{
     });
 
     // 发送数据事件
-    postMessage(arr);
+    self.postMessage(arr);
 };

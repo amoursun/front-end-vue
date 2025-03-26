@@ -5,6 +5,7 @@
 
 <script setup lang="ts">
 import { ECharts, EChartsOption, init } from 'echarts';
+
 interface ChartProp {
 	unit: string[];
 	data: number[];

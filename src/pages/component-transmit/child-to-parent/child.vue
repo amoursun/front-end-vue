@@ -5,7 +5,8 @@
 	</div>
 </template>
 <script setup lang="ts" name="Child">
-	import {defineEmits, ref} from 'vue';
+	import {ref} from 'vue';
+	// defineEmits, defineProps 都是 setup 语法糖的内置方法
 	const msg = ref('我是子组件');
 	const emit = defineEmits(['handler']);
 	function onHandler() {

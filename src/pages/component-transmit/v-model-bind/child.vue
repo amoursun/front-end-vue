@@ -6,7 +6,7 @@
 	</div>
 </template>
 <script setup lang="ts" name="Child">
-	import {defineProps, ref, defineEmits } from 'vue';
+	import {ref} from 'vue';
 	const props = defineProps({
 		content:{
 			type: String,

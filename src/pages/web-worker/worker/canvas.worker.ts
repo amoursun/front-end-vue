@@ -12,5 +12,6 @@ self.onmessage = function (e: IWorkerEvent<{canvas: HTMLCanvasElement}>) {
         ctx.fillStyle = '#1989FA'; // 设置填充颜色
         ctx.fill(); // 开始填充
         ctx.stroke();
+        self.postMessage('绘制完成');
     }
 };

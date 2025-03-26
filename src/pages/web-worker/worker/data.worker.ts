@@ -8,6 +8,7 @@ self.onmessage = function (e: IWorkerEvent<string[][]>) {
             list.push({...data[j], key: `数据${j + 1 + i * 10}`});
         }
     }
+    console.log(list, 'data-worker');
     // 发送数据事件
-    postMessage(list);
+    self.postMessage(list);
 };

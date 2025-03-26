@@ -5,7 +5,7 @@
 	</div>
 </template>
 <script setup lang="ts" name="Child">
-	import {ref, defineExpose } from 'vue';
+	import {ref } from 'vue';
 	const data = ref('子组件的数据');
 	function getData() {
 		return data.value;

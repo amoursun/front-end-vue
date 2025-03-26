@@ -18,6 +18,7 @@
 
 <script setup lang="ts">
 import { ECharts, EChartsOption, init } from 'echarts';
+
 interface ChartProp {
 	man: number;
 	woman: number;

@@ -1,8 +1,8 @@
 import { defineComponent, onMounted, ref } from 'vue';
 import {ScrollTreeTable} from '@/components/scroll-table';
 import { Action, ElMessage, ElMessageBox } from 'element-plus'
-import style from './index.module.scss';
 import { IItem, getData, getTreeData } from './utils';
+import './style.scss';
 
 const service = () => {
     return new Promise<IItem[]>((resolve) => {
@@ -33,7 +33,7 @@ export default defineComponent({
         /* render 函数 */
         return () => {
             return (
-                <div class={style.scrollTable}>
+                <div class="scroll-table">
                     <ScrollTreeTable
                         columns={[
                             {

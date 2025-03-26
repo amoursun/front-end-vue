@@ -7,7 +7,7 @@
 	</div>
 </template>
 <script setup lang="ts" name="Child">
-	import {defineProps, ref, watch } from 'vue';
+	import { ref, watch } from 'vue';
 	const props = defineProps({
 		msg:{
 			type: String,

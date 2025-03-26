@@ -46,11 +46,12 @@
 <script setup lang="ts" name="workerTable">
 	import { reactive, ref, watch, onMounted, onUnmounted } from 'vue';
 	import { head, calcList, table } from '../table-data';
+	import { WebWorker } from '@/utils/worker';
 
 	
-	// import calcWorker from 'worker-loader!../worker/calc-worker.ts?inline=false';
-	// import dataWorker from 'worker-loader!../worker/data-worker.ts?inline=false';
-	// const worker = new Worker('../worker/canvas-worker.ts', {type: 'module'});
+	// import calcWorker from 'worker-loader!../worker/calc-worker.ts?worker';
+	// import dataWorker from 'worker-loader!../worker/data-worker.ts?worker';
+	// const worker = new Worker(new URL('../worker/canvas-worker.ts', import.meta.url), {type: 'module'});
 
 	interface IDataMap {
 		[key: string]: Array<number | string>;
@@ -113,7 +114,7 @@
 	});
 
 	onMounted(() => {
-		const worker = new Worker('../worker/data-worker.ts', {type: 'module'});
+		const worker = WebWorker('src/pages/web-worker/worker/data-worker.ts');
 		worker.postMessage(table);
 		worker.addEventListener('message', (e) => {
 			worker.terminate();
@@ -189,18 +190,18 @@
     // 创建计算worker
     function makeWorker(calcInfo: ICalcInfo) {
 		const workerName = `worker${state.workerList.length}`;
-		const worker = new Worker('../worker/calc-worker.ts', {type: 'module'})
-		let start = performance.now();
+		const worker = WebWorker('src/pages/web-worker/worker/calc-worker.ts');
+		const start = performance.now();
 		worker.postMessage(calcInfo);
 		worker.addEventListener('message', (e) => {
 			worker.terminate();
 			state.footerData.forEach((data, key) => {
-			if (data[0] == e.data[0]) {
-				state.footerData.splice(key, 1, e.data); // 原位置替换
-			}
+				if (data[0] == e.data[0]) {
+					state.footerData.splice(key, 1, e.data); // 原位置替换
+				}
 			});
-			let end = performance.now();
-			let duration = end - start;
+			const end = performance.now();
+			const duration = end - start;
 			console.log(`当前任务: ${e.data[0]}, 计算用时: ${duration} 毫秒`);
 		});
 		state.workerList.push({[workerName]: worker});
