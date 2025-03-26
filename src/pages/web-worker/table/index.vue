@@ -1,5 +1,5 @@
 <template>
-	<div class="data-list">
+	<div class="data-list" v-if="!loading">
 		<div class="calc-list">
 			<div class="calc-tip">选择表格的计算类型</div>
 			<el-checkbox-group v-model="state.checkList">
@@ -41,17 +41,19 @@
 			</vxe-table>
 		</div>
 	</div>
+	<div v-else>
+		<a-skeleton />
+	</div>
 </template>
 
 <script setup lang="ts" name="workerTable">
 	import { reactive, ref, watch, onMounted, onUnmounted } from 'vue';
 	import { head, calcList, table } from '../table-data';
-	import { WebWorker } from '@/utils/worker';
-
 	
 	// import calcWorker from 'worker-loader!../worker/calc-worker.ts?worker';
 	// import dataWorker from 'worker-loader!../worker/data-worker.ts?worker';
-	// const worker = new Worker(new URL('../worker/canvas-worker.ts', import.meta.url), {type: 'module'});
+	import CalcWorker from '../worker/calc-worker.ts?worker';
+	import DataWorker from '../worker/data-worker.ts?worker';
 
 	interface IDataMap {
 		[key: string]: Array<number | string>;
@@ -68,6 +70,7 @@
 	type IStrNum = number | string;
 
 	const refVxeTable = ref();
+	const loading = ref<boolean>(false);
 	const footerItems = reactive<{
 		row: number;
 		col: number;
@@ -114,12 +117,16 @@
 	});
 
 	onMounted(() => {
-		const worker = WebWorker('src/pages/web-worker/worker/data-worker.ts');
+		loading.value = true;
+		const worker = new DataWorker();
+		// const worker = new Worker(new URL('../worker/data-worker.ts', import.meta.url), {type: 'module'});
 		worker.postMessage(table);
+		// worker.onmessage = (e) => {}; 一样
 		worker.addEventListener('message', (e) => {
 			worker.terminate();
 			state.tableData = state.tableData.concat(e.data);
 			getDataMap();
+			loading.value = false;
 		});
 	});
 	
@@ -190,10 +197,10 @@
     // 创建计算worker
     function makeWorker(calcInfo: ICalcInfo) {
 		const workerName = `worker${state.workerList.length}`;
-		const worker = WebWorker('src/pages/web-worker/worker/calc-worker.ts');
+		const worker = new Worker(new URL('../worker/calc-worker.ts', import.meta.url), {type: 'module'});
 		const start = performance.now();
-		worker.postMessage(calcInfo);
-		worker.addEventListener('message', (e) => {
+		worker.postMessage(JSON.parse(JSON.stringify(calcInfo)));
+		worker.onmessage = (e) => {
 			worker.terminate();
 			state.footerData.forEach((data, key) => {
 				if (data[0] == e.data[0]) {
@@ -203,7 +210,7 @@
 			const end = performance.now();
 			const duration = end - start;
 			console.log(`当前任务: ${e.data[0]}, 计算用时: ${duration} 毫秒`);
-		});
+		};
 		state.workerList.push({[workerName]: worker});
     }
     // 将所有数据按每个列进行统计

@@ -9,10 +9,9 @@
 </template>
 
 <script setup lang="ts" name="workerCanvas">
-	import { WebWorker } from '@/utils/worker';
 	import { reactive, ref } from 'vue';
 	import { IWorkerEvent } from '../type';
-	// import CanvasWorker from 'src/pages/web-worker/worker/canvas-worker.ts?worker';
+	import CanvasWorker from '@/pages/web-worker/worker/canvas-worker.ts?worker';
 
 	const result = reactive<{
 		finished: string;
@@ -22,8 +21,8 @@
 
 	const refCanvas = ref<HTMLCanvasElement | null>(null);
 	const makeWorker = () => {
-		const worker = WebWorker('@/pages/web-worker/worker/canvas-worker.ts');
-		// const worker = new CanvasWorker();
+		// const url = 
+		const worker = new CanvasWorker();
 		// const worker = new Worker(
 		// 	new URL('../worker/canvas-worker.ts', import.meta.url),
 		// 	{ type: 'module' }
@@ -33,7 +32,6 @@
 			return;
 		};
 		const offscreen = refCanvas.value.transferControlToOffscreen();
-		console.dir(offscreen);
 		// 注意：第二个参数不能省略
 		void worker.postMessage({canvas: offscreen}, [offscreen]);
 

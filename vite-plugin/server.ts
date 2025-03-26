@@ -5,7 +5,7 @@ export function createViteServer(): ServerOptions {
         hmr: true, // 启用热模块替换
         port: 3000, // 设置开发服务器的端口号
         // 默认的origin是http://localhost:3000，这里可以自定义设置, 但是 web worker 会跨域问题, 需要和端口一致
-        origin: 'http://localhost:3000',
+        // origin: 'http://localhost:6666',
         host: 'localhost', // 设置开发服务器的主机地址
         open: true, // 是否在服务器启动时自动在浏览器中打开应用
         // https: {

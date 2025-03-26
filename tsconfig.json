@@ -20,7 +20,7 @@
         // --strictNullChecks和 --strictFunctionTypes和--strictPropertyInitialization。
         "strict": true,
         "jsx": "preserve", // 在.tsx文件里支持JSX
-        "sourceMap": true,
+        // "sourceMap": true,
         "resolveJsonModule": true,
         "isolatedModules": true,
         "esModuleInterop": true,
@@ -46,6 +46,5 @@
         ]
     },
     "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/**/*.js", "src/**/*.jsx"],
-    "references": [{"path": "./tsconfig.node.json"}],
-    "plugins": []
+    "references": [{"path": "./tsconfig.node.json"}]
 }

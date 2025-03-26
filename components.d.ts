@@ -71,6 +71,7 @@ declare module 'vue' {
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCheckboxGroup: typeof import('element-plus/es')['ElCheckboxGroup']
     ElDivider: typeof import('element-plus/es')['ElDivider']
+    ElLoadingSpinner: typeof import('element-plus/es')['ElLoadingSpinner']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElUpload: typeof import('element-plus/es')['ElUpload']
