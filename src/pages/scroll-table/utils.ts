@@ -1,8 +1,7 @@
-export interface IItem {
-    id: string | number;
-    name: string;
-    city: string;
-    children?: IItem[];
+import { ITableItem } from '@/components/scroll-table/type';
+
+export interface IItem extends ITableItem {
+    
 }
 
 export function getData(): IItem[] {

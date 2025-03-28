@@ -1,10 +1,18 @@
 import { ExtractPropTypes, PropType, VNode } from 'vue'
 
 interface ColumnSlotParams {
-  text: string
-  record: any
-  index: number
-  column: ColumnProps
+  text: string;
+  record: ITableItem;
+  index: number;
+  column: ColumnProps;
+}
+
+export interface ITableItem {
+    city: string;
+    id: string | number;
+    level?: number;
+    name: string;
+    children?: ITableItem[];
 }
 
 export interface ColumnProps {
@@ -19,7 +27,7 @@ export const tableProps = {
     default: () => []
   },
   dataSource: {
-    type: Array as PropType<any[]>,
+    type: Array as PropType<ITableItem[]>,
     default: () => []
   },
   cellHeight: {
@@ -29,6 +37,10 @@ export const tableProps = {
   scrollY: {
     type: Number,
     default: 320
+  },
+  headerFixed: {
+    type: Boolean,
+    default: false
   }
 }
 

@@ -3,16 +3,29 @@ import { TableProps } from '../type';
 
 export function useVirtualScroll(
     props: TableProps,
-    headerRef: Ref<HTMLElement | null>
+    refs: {
+        headerRef: Ref<HTMLElement | null>;
+        scrollRef: Ref<HTMLElement | null>;
+    }
 ) {
     // 实际渲染数据的起始索引
     const startIndex = ref(0);
 
+    const scrollY = computed(() => {
+        const { scrollY } = props;
+        const { scrollRef } = refs;
+        if (scrollRef.value) {
+            return scrollRef.value.clientHeight;
+        }
+        return scrollY || 0;
+    });
+
     // 表格实际可展示的数据条数
     const count = computed(() => {
-        const { cellHeight, scrollY } = props;
+        const { cellHeight } = props;
+        const { headerRef } = refs;
         const headerHeight = headerRef.value ? headerRef.value.clientHeight : 0;
-        return Math.ceil((scrollY - headerHeight) / cellHeight);
+        return Math.ceil((scrollY.value - headerHeight) / cellHeight);
     });
 
     // 实际渲染数据
@@ -36,5 +49,6 @@ export function useVirtualScroll(
         count,
         tableData,
         onScroll,
+        scrollY,
     };
 }

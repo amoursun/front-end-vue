@@ -1,9 +1,12 @@
 import { Ref, computed, ref } from 'vue';
-import { TableProps } from '../type';
+import { ITableItem, TableProps } from '../type';
 
 export function useTreeVirtualScroll(
     props: TableProps,
-    headerRef: Ref<HTMLElement | null>
+    refs: {
+        headerRef: Ref<HTMLElement | null>;
+        scrollRef: Ref<HTMLElement | null>;
+    }
 ) {
     const expandedRowKeys = ref<string[]>([]);
     // 实际渲染数据的起始索引
@@ -23,7 +26,7 @@ export function useTreeVirtualScroll(
     };
 
     // 遍历树
-    const walkTree = (data: any[], walkData: any[], level = 0) => {
+    const walkTree = (data: ITableItem[], walkData: ITableItem[], level = 0) => {
         for (let item of walkData) {
             data.push({
                 ...item,
@@ -37,17 +40,27 @@ export function useTreeVirtualScroll(
 
     // 全部展开数据
     const allTableData = computed(() => {
-        const data: any[] = [];
+        const data: ITableItem[] = [];
         const { dataSource } = props;
         walkTree(data, dataSource);
         return data;
     });
 
+    const scrollY = computed(() => {
+        const {scrollY} = props;
+        const { scrollRef } = refs;
+        if (scrollRef.value) {
+            return scrollRef.value.clientHeight;
+        }
+        return scrollY;
+    });
+
     // 表格实际可展示的数据条数
     const count = computed(() => {
-        const { cellHeight, scrollY } = props;
-        const headerHeight = headerRef.value ? headerRef.value.clientHeight : 0;
-        return Math.ceil((scrollY - headerHeight) / cellHeight);
+        const { cellHeight, headerFixed } = props;
+        const { headerRef } = refs;
+        const headerHeight = (headerFixed && headerRef.value) ? headerRef.value.clientHeight : 0;
+        return Math.ceil((scrollY.value - headerHeight) / cellHeight);
     });
 
     // 实际渲染数据
@@ -61,9 +74,10 @@ export function useTreeVirtualScroll(
     // 滚动监听事件
     const onScroll = (e: Event) => {
         const { scrollTop, scrollHeight } = e.target as HTMLElement;
-        startIndex.value = Math.floor(
+        const start = Math.floor(
             (scrollTop / scrollHeight) * allTableData.value.length
         );
+        startIndex.value = start;
     };
 
     return {

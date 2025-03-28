@@ -23,9 +23,9 @@
     }
 }
 
-.scroll-table {
+.scroll-table-wrapper {
     overflow-y: auto;
-    max-height: 320px;
+    height: 100%;
     position: relative;
     border: 1px solid #ededed;
     border-radius: 4px;

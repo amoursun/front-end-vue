@@ -43,12 +43,12 @@ export default defineComponent({
                       )}
                       {customRender
                         ? customRender({
-                            text: item[key]?.toString(),
+                            text: item.name,
                             record: item,
                             index,
                             column
                           })
-                        : item[key]}
+                        : item.name}
                     </td>
                   )
                 })}

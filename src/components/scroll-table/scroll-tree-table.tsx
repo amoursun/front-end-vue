@@ -1,14 +1,16 @@
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, ref } from 'vue';
 import { tableProps } from './type';
 import {useTableHeader} from './hook/use-table-header';
 import {useTreeVirtualScroll} from './hook/use-tree-virtual-scroll';
 import './style.scss';
 import { MinusSquareOutlined, PlusSquareOutlined } from '@ant-design/icons-vue';
 
+
 export default defineComponent({
     name: 'ScrollTreeTable',
     props: tableProps,
     setup(props) {
+        const scrollRef = ref<HTMLElement | null>(null);
         const { tableHeaders, headerRef } = useTableHeader(props)
         const {
             isExpanded,
@@ -18,7 +20,8 @@ export default defineComponent({
             tableData,
             allTableData,
             onScroll,
-        } = useTreeVirtualScroll(props, headerRef);
+        } = useTreeVirtualScroll(props, {headerRef, scrollRef});
+        console.log(tableData.value)
         
         /* render 函数 */
         return () => {
@@ -27,11 +30,12 @@ export default defineComponent({
             const bottomHeight = (allTableData.value.length - startIndex.value - count.value) * cellHeight;
             return (
                 <div
-                    class="scroll-table scroll-table-tree"
+                    class="scroll-table-wrapper scroll-table-tree"
+                    ref={scrollRef}
                     onScroll={onScroll}
                 >
                     <table class="table">
-                        <thead>
+                        <thead ref={headerRef}>
                             <tr>
                                 {tableHeaders.value.map((header) => (
                                     <th>{header}</th>
@@ -44,7 +48,8 @@ export default defineComponent({
                                 <tr key={item.id}>
                                     {columns.map((column, columnIndex) => {
                                         const { customRender, key } = column;
-                                        const { id, level = 0 } = item;
+                                        const { level = 0 } = item;
+                                        const id = String(item.id);
                                         return (
                                             <td>
                                                 <span
@@ -68,11 +73,11 @@ export default defineComponent({
                                                     )}
                                                 </span>
                                                 {customRender ? customRender({
-                                                    text: item[key]?.toString(),
+                                                    text: item.name,
                                                     record: item,
                                                     index,
                                                     column,
-                                                }) : item[key]}
+                                                }) : item.name}
                                             </td>
                                         );
                                     })}
