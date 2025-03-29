@@ -80,6 +80,9 @@ importers:
       vue3-tree-org:
         specifier: ^4.2.2
         version: 4.2.2(vue@3.4.27(typescript@5.4.5))
+      vuedraggable:
+        specifier: ^2.24.3
+        version: 2.24.3
       vxe-table:
         specifier: ^4.11.29
         version: 4.11.29(vue@3.4.27(typescript@5.4.5))
@@ -5212,6 +5215,9 @@ packages:
     resolution: {integrity: sha512-/dPCrG1s3ePpWm6yBbxZq5Be1dXGLyLn9Z791chDC3NFrpkVbWGzkBwPN1knaciexFXgRJ7hzdnwZ4stHSDmjg==}
     engines: {node: '>=4'}
 
+  sortablejs@1.10.2:
+    resolution: {integrity: sha512-YkPGufevysvfwn5rfdlGyrGjt7/CRHwvRPogD/lC+TnvcN29jDpCifKP+rBqf+LRldfXSTh+0CGLcSg0VIxq3A==}
+
   sortablejs@1.15.2:
     resolution: {integrity: sha512-FJF5jgdfvoKn1MAKSdGs33bIqLi3LmsgVTliuX6iITj834F+JRQZN90Z93yql8h0K2t0RwDPBmxwlbZfDcxNZA==}
 
@@ -5932,6 +5938,9 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+
+  vuedraggable@2.24.3:
+    resolution: {integrity: sha512-6/HDXi92GzB+Hcs9fC6PAAozK1RLt1ewPTLjK0anTYguXLAeySDmcnqE8IC0xa7shvSzRjQXq3/+dsZ7ETGF3g==}
 
   vxe-pc-ui@4.4.25:
     resolution: {integrity: sha512-FTSaXgqJUa/G2fBJjrSwZiySi9tkJHaWOjcf40xg6qJAv/cB6IQtv5mID57zBYhwDu/nqtzu4rxzPY8HFLXtsg==}
@@ -11636,6 +11645,8 @@ snapshots:
     dependencies:
       is-plain-obj: 1.1.0
 
+  sortablejs@1.10.2: {}
+
   sortablejs@1.15.2: {}
 
   source-map-js@1.2.0: {}
@@ -12444,6 +12455,10 @@ snapshots:
       '@vue/shared': 3.4.27
     optionalDependencies:
       typescript: 5.4.5
+
+  vuedraggable@2.24.3:
+    dependencies:
+      sortablejs: 1.10.2
 
   vxe-pc-ui@4.4.25(vue@3.4.27(typescript@5.4.5)):
     dependencies:

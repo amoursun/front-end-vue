@@ -40,6 +40,7 @@
         "vue-query": "^1.26.0",
         "vue-router": "^4.0.13",
         "vue3-tree-org": "^4.2.2",
+        "vuedraggable": "^2.24.3",
         "vxe-table": "^4.11.29",
         "xe-utils": "^3.7.4"
     },
