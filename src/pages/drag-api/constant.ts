@@ -68,7 +68,7 @@ export const CourseData: ICourseData[] = [
     },
     {
         id: 'Art',
-        name: '艺术',
+        name: '美术',
         bgColor: '#fff',
     },
     {
