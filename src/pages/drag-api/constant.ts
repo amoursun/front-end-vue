@@ -15,10 +15,30 @@ const colors = [
     '#911eb4',
     '#fabed4',
     '#9A6324',
-    '#a9a9a9',
+    '#00FF40',
     '#aaffc3',
     '#dcbeff',
 ];
+// 火焰红 #FF0000
+// 电光橙 #FF8000
+// 柠檬黄 #FFFF00
+// 荧光绿 #80FF00
+// 霓虹青 #00FF80
+// 宝石蓝 #0080FF
+// 皇家紫 #8000FF
+// 品红 #FF00FF
+// 珊瑚粉 #FF4081
+// 蜜瓜橙 #FFAB40
+// 芥末黄 #FFD700
+// 翡翠绿 #00FF40
+// 孔雀蓝 #00FFFF
+// 钴蓝 #0040FF
+// 薰衣草紫 #AA00FF
+// 玫瑰红 #FF0066
+// 日落橙 #FF6600
+// 香蕉黄 #FFE600
+// 酸橙绿 #CCFF00
+// 碧波蓝 #00BFFF
 
 export const CourseData: ICourseData[] = [
     {
