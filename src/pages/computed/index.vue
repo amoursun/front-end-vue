@@ -35,10 +35,6 @@
 <script setup lang="ts" name="computed">
 	import { ref, reactive, h } from 'vue';
 	import { PlusOutlined, MinusOutlined } from '@ant-design/icons-vue';
-	import {
-		Plus,
-		Minus,
-	} from 'element-plus'
 	interface DataType {
 		name: string;
 		price: number;
