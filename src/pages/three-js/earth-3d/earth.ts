@@ -35,6 +35,10 @@ function getDefaultNumber(num: number | undefined) {
     }
     return num;
 }
+function getUrlObject(path: string) {
+    const data = new URL(path, import.meta.url);
+    return data;
+}
 export class Earth3D {
     private canvas!: HTMLCanvasElement;
     options!: Earth3DOptions;
@@ -42,9 +46,8 @@ export class Earth3D {
     private camera!: THREE.PerspectiveCamera;
     private renderer!: THREE.WebGLRenderer;
     private textureLoader!: THREE.TextureLoader;
-    private light!: THREE.AmbientLight;
+    // private light!: THREE.AmbientLight;
     private controls!: OrbitControls;
-    private loader: THREE.FileLoader = new THREE.FileLoader();
 
     // 旋转队列
     rotateSlowArr: CustomObject3D[] = [];
@@ -171,7 +174,7 @@ export class Earth3D {
         
         // 渲染器
         this.renderer = this.initRenderer(this.canvas, this.width, this.height);
-        document.body.appendChild(this.renderer.domElement);
+        // document.body.appendChild(this.renderer.domElement);
 
         // 相机控制
         this.controls = this.initControls(this.camera, this.renderer);
@@ -239,7 +242,7 @@ export class Earth3D {
 
             this.renders(time);
             this.animate();
-        })
+        });
     }
 
     /**
@@ -319,22 +322,21 @@ export class Earth3D {
     /**
      * 球相关加载
      * */
-    earth() {
+    drawEarthAndMoon() {
         const radius = this.globeRadius;
         const widthSegments = 100
         const heightSegments = 100
         const sphereGeometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments)
 
         // 地球
-        const textureLoader = new THREE.TextureLoader();
-        const earthTexture = textureLoader.load('./img/3.jpg');
+        const earthTexture = this.textureLoader.load(getUrlObject('./img/3.jpg').href);
         const earthMaterial = new THREE.MeshStandardMaterial({
             map: earthTexture,
         });
         const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
 
         // 月球
-        const moonTexture = textureLoader.load('./img/2.jpg');
+        const moonTexture = this.textureLoader.load(getUrlObject('./img/2.jpg').href);
         const moonMaterial = new THREE.MeshPhongMaterial({ map: moonTexture });
         const moonMesh = new THREE.Mesh(sphereGeometry, moonMaterial);
         moonMesh.scale.set(0.1, 0.1, 0.1);
@@ -348,6 +350,7 @@ export class Earth3D {
 
         // 地球加入 地球3D层
         this.earthObject.add(earthMesh);
+        // 地球旋转角度
         this.earthObject.rotation.set(0.5, 2.9, 0.1);
         this.earthObject._y = 2.0;
         this.earthObject._s = 0.1;
@@ -519,8 +522,9 @@ export class Earth3D {
      * 边界炫光路径
      * */
     dazzleLight() {
-        const href = new URL('./file/100000.json', import.meta.url).href;
-        this.loader.load(href, (data) => {
+        const href = getUrlObject('./file/100000.json').href;
+        const loader = new THREE.FileLoader();
+        loader.load(href, (data) => {
             const jsonData = JSON.parse(data as string) as IData;
             console.log('🚀 ~ file: index.html:454 ~ loader.load ~ jsonData:', jsonData);
 
@@ -560,7 +564,7 @@ export class Earth3D {
             const params = {
                 pointSize: 2.0,
                 pointColor: '#4ec0e9'
-            }
+            };
 
             // 创建着色器材质
             const material = new THREE.ShaderMaterial({
@@ -624,7 +628,7 @@ export class Earth3D {
 
         // 绘制
         this.drawingBackground();
-        this.earth();
+        this.drawEarthAndMoon();
         this.drawChart();
         this.dazzleLight();
 
