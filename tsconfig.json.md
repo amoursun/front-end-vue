@@ -200,3 +200,42 @@
 2. **编译目标**：显式设置 `"target"` 和 `"outDir"` 以控制输出兼容性和目录结构。
 3. **类型安全**：谨慎使用 `allowSyntheticDefaultImports`，优先依赖模块的实际导出方式。
 4. **项目引用**：若未使用子项目，移除冗余的 `"composite": true`。
+
+`tsBuildInfoFile` 是 TypeScript 编译器的一个配置选项，主要用于**增量编译**场景，其核心作用是**指定存储增量编译信息的文件路径**。以下是其详细含义和用法：
+
+---
+
+### **1. 基本功能**
+- **增量编译支持**：当启用 `"incremental": true` 时，TypeScript 会在首次编译时生成一个存储编译状态的文件（默认名为 `tsconfig.tsbuildinfo`），记录模块依赖、类型检查结果等元数据。后续编译仅重新处理变更部分，显著提升编译速度。
+- **自定义路径**：通过 `tsBuildInfoFile` 可以修改该文件的存储位置和名称，例如：
+  ```json
+  {
+    "compilerOptions": {
+      "incremental": true,
+      "tsBuildInfoFile": "./build-cache/compilation-info.json"
+    }
+  }
+  ```
+  这会将增量编译信息存储在 `build-cache` 目录下的自定义文件中。
+
+---
+
+### **2. 依赖条件**
+- **必须与 `incremental` 或 `composite` 联用**：单独配置 `tsBuildInfoFile` 会报错，需同时启用 `"incremental": true` 或 `"composite": true`（后者用于项目引用场景）。
+- **项目引用要求**：若使用 `composite`，还需设置 `"declaration": true` 以生成声明文件，确保子项目类型能被正确引用。
+
+---
+
+### **3. 实际应用场景**
+- **大型项目优化**：通过复用增量编译信息，减少全量编译时间。例如，首次编译耗时 4.02 秒，二次编译可能仅需 0.5 秒（仅处理变更文件）。
+- **缓存管理**：将文件放入 `.gitignore` 避免提交，或主动清理以触发全量重建（如依赖库版本变更时）。
+
+---
+
+### **4. 注意事项**
+- **路径冲突**：若 `outFile` 与 `tsBuildInfoFile` 同时配置，增量文件会默认生成在 `outFile` 同级目录，需显式指定路径避免混淆。
+- **版本兼容性**：TypeScript ≥3.4 支持此功能，旧版本需升级。
+
+---
+
+通过合理配置 `tsBuildInfoFile`，可以平衡编译效率与工程化需求，尤其适合频繁迭代的大型 TypeScript 项目。
