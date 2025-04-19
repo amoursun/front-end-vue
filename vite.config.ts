@@ -22,6 +22,9 @@ export default defineConfig({
     pure: env.VITE_DROP_CONSOLE ? ['console.log', 'debugger'] : [],
     drop: ['console', 'debugger'],
   },
+  worker: {
+    format: 'es', // 默认输出 ES 模块
+  },
   // 构建配置
   build: createViteBuild(),
   // 不走打包的，静态资源目录，解决移动目录，出现没有权限
