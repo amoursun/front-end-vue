@@ -10,22 +10,14 @@
   import { Button } from 'ant-design-vue';
   import {idlePerformanceTask, requestAnimationFramePerformanceTask} from './performance-task';
   const elementsRef = ref<HTMLDivElement | null>(null);
-  type ITask = () => void;
+  type ITask = () => HTMLDivElement;
   const tasks: ITask[] = Array.from({length: 30 * 10000}, (_, index) => () => {
     const div = document.createElement('div');
     div.innerText = `元素${index}`;
     div.classList.add('element-item');
-    elementsRef.value?.appendChild(div);
+    // elementsRef.value?.appendChild(div);
+    return div;
   });
-
-  function loadElements() {
-    // performanceTask(tasks);
-    // const result = idlePerformanceTask(tasks);
-    const result = requestAnimationFramePerformanceTask(tasks);
-    // setTimeout(() => {
-    //   result.stop();
-    // }, 100);
-  }
 
   // 分步执行任务
   function performanceTask(tasks: ITask[]) {
@@ -54,6 +46,15 @@
     }
     run();
   }
+  function loadElements() {
+    // performanceTask(tasks);
+    // const result = idlePerformanceTask(tasks);
+    // const result = requestAnimationFramePerformanceTask(tasks);
+    // setTimeout(() => {
+    //   result.stop();
+    // }, 100);
+  }
+  
 </script>
 
 <style scoped lang="scss">

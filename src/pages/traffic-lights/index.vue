@@ -11,9 +11,9 @@
   import {TrafficLight, TrafficLightColorEnum, ITrafficLightPart} from './traffic-light';
 
   const lights: ITrafficLightPart[] = [
-    { type: TrafficLightColorEnum.Red, time: 5 * 1000 },
-    { type: TrafficLightColorEnum.Yellow, time: 3 * 1000 },
-    { type: TrafficLightColorEnum.Green, time: 8 * 1000 },
+    { type: TrafficLightColorEnum.Green, time: 60 * 1000 },
+    { type: TrafficLightColorEnum.Yellow, time: 5 * 1000 },
+    { type: TrafficLightColorEnum.Red, time: 30 * 1000 },
   ];
   const activeColor = ref<TrafficLightColorEnum>(TrafficLightColorEnum.Red);
   const time = ref<number>(0);
