@@ -42,7 +42,7 @@
 		watch
 	} from 'vue';
 	import { IListItem, listData_default, listData_100 } from '../method';
-	import { useThrottle } from './tool';
+	import { useThrottle } from './tools';
 
 	// 不定高虚拟列表
 	interface IEstimatedListProps<T> {
